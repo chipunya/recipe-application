@@ -51,6 +51,7 @@ function App() {
 
   const updateSearchItem = () => {
     setSearchItem(searchInput);
+    setSearchInput("");
   };
   // console.log(recipes);
   const handleCardClick = async (e, dishTitle, url) => {
@@ -88,6 +89,7 @@ function App() {
     <div className="App">
       <NavBar handleParameters={handleParametersFromNavBar} />
       <SearchBar
+        searchInput={searchInput}
         updateSearchItem={updateSearchItem}
         handleChange={handleChange}
       />
