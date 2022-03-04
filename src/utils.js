@@ -8,29 +8,34 @@ export const fetchFromApi = async (
 ) => {
   const searchItemString =
     searchItem.trim().length > 0 ? "&q=" + searchItem : "";
-  const mealTypeString =
-    mealType.length > 0
-      ? "&mealType=" + mealType.join("&mealType=")
-      : mealType.toString();
-  const dishTypeString =
-    dishType.length > 0
-      ? "&dishType=" + dishType.join("&dishType=")
-      : dishType.toString();
+  const mealTypeString = !mealType
+    ? ""
+    : mealType.length > 0
+    ? "&mealType=" + mealType.join("&mealType=")
+    : mealType.toString();
+  const dishTypeString = !dishType
+    ? ""
+    : dishType.length > 0
+    ? "&dishType=" + dishType.join("&dishType=")
+    : dishType.toString();
 
-  const cousineTypeString =
-    cousineType.length > 0
-      ? "&cuisineType=" + cousineType.join("&cuisineType=")
-      : cousineType.toString();
+  const cousineTypeString = !cousineType
+    ? ""
+    : cousineType.length > 0
+    ? "&cuisineType=" + cousineType.join("&cuisineType=")
+    : cousineType.toString();
 
-  const dietLabelString =
-    dietLabel.length > 0
-      ? "&diet=" + dietLabel.join("&diet=")
-      : dietLabel.toString();
+  const dietLabelString = !dietLabel
+    ? ""
+    : dietLabel.length > 0
+    ? "&diet=" + dietLabel.join("&diet=")
+    : dietLabel.toString();
 
-  const healthLabelString =
-    healthLabel.length > 0
-      ? "&health=" + healthLabel.join("&health=")
-      : healthLabel.toString();
+  const healthLabelString = !healthLabel
+    ? ""
+    : healthLabel.length > 0
+    ? "&health=" + healthLabel.join("&health=")
+    : healthLabel.toString();
   console.log(
     mealTypeString,
     dishTypeString,

@@ -308,13 +308,6 @@ const NavBar = ({ handleParameters }) => {
             </NavDropdown>
             <NavDropdown title="Health label" id="basic-nav-dropdown">
               <NavDropdown.Item
-                href="#action/3.1"
-                title="health"
-                onClick={saveParameter}
-              >
-                Alcohol-cocktail
-              </NavDropdown.Item>
-              <NavDropdown.Item
                 href="#action/3.2"
                 title="health"
                 onClick={saveParameter}
