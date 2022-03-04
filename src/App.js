@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import NavBar from "./components/navBar";
+import SearchBar from "./components/searchBar/searchBar";
+import SearchResults from "./components/searchResults/searchResults";
 import { fetchFromApi } from "./utils";
 import RecipeCard from "./components/recipeCard/recipeCard";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";
@@ -50,22 +51,8 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1> recipe search </h1>
-      <input type="text" value={searchItem} onChange={handleChange}></input>
-      <div className="search-results">
-        {recipes &&
-          recipes.map((recipe, i) => (
-            <RecipeCard
-              title={recipe.recipe.label}
-              image={recipe.recipe.image}
-              key={i}
-              url={recipe.recipe.url}
-              handleCardClick={(e) =>
-                handleCardClick(e, recipe.recipe.label, recipe.recipe.url)
-              }
-            />
-          ))}
-      </div>
+      <SearchBar value={searchItem} onChange={handleChange} />
+      <SearchResults recipes={recipes} handleCardClick={handleCardClick} />
       {isOneRecipeSelected && <DisplayRecipe data={selectedRecipe} />}
     </div>
   );
