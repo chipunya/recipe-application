@@ -5,14 +5,23 @@ import NavBar from "./components/navBar";
 import SearchBar from "./components/searchBar/searchBar";
 import SearchResults from "./components/searchResults/searchResults";
 import { fetchFromApi } from "./utils";
-import RecipeCard from "./components/recipeCard/recipeCard";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";
+import { configure } from "@testing-library/react";
 function App() {
+  //states for fetching data
   const [recipes, setRecipes] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [searchItem, setSearchItem] = useState("");
   const [timeOutId, setTimeOutId] = useState(null);
   const [isOneRecipeSelected, setIsOneRecipeSelected] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState({});
+  //states for saving search parameters
+  const [mealType, setMealType] = useState([]);
+  const [dishType, setDishtype] = useState([]);
+  const [cousineType, setCousineType] = useState([]);
+  const [dietLabel, setDietLabel] = useState([]);
+  const [healthLabel, setHealthLabel] = useState([]);
+
   useEffect(() => {
     if (!searchItem) {
       return;
@@ -21,16 +30,27 @@ function App() {
       clearTimeout(timeOutId);
     }
     const newTimeOutId = setTimeout(async () => {
-      const data = await fetchFromApi(searchItem);
+      const data = await fetchFromApi(
+        searchItem,
+        mealType,
+        dishType,
+        cousineType,
+        dietLabel,
+        healthLabel
+      );
       setRecipes(data.hits);
       setSearchItem("");
       setTimeOutId(null);
-    }, 1000);
+    }, 500);
     setTimeOutId(newTimeOutId);
-  }, [searchItem]);
+  }, [searchItem, mealType, dishType, cousineType, dietLabel, healthLabel]);
 
   const handleChange = (e) => {
-    setSearchItem(e.target.value);
+    setSearchInput(e.target.value);
+  };
+
+  const updateSearchItem = () => {
+    setSearchItem(searchInput);
   };
   // console.log(recipes);
   const handleCardClick = async (e, dishTitle, url) => {
@@ -44,14 +64,33 @@ function App() {
     console.log(filteredData[0].recipe);
     setSelectedRecipe(filteredData[0].recipe);
     setIsOneRecipeSelected(true);
-    // setSearchItem("");
+    // setSearchInput("");
   };
-  console.log(selectedRecipe);
+  // console.log(selectedRecipe);
+  const handleParametersFromNavBar = (
+    e,
+    mealTypeFromNavBar,
+    dishTypeFromNavBar,
+    cousineTypeFromNavBar,
+    dietLabelFromNavBar,
+    healthLabelFromNavBar
+  ) => {
+    setMealType(mealTypeFromNavBar);
+    setDishtype(dishTypeFromNavBar);
+    setCousineType(cousineTypeFromNavBar);
+    setDietLabel(dietLabelFromNavBar);
+    setHealthLabel(healthLabelFromNavBar);
+  };
+
+  console.log(mealType, dishType, cousineType, dietLabel, healthLabel);
 
   return (
     <div className="App">
-      <NavBar />
-      <SearchBar value={searchItem} onChange={handleChange} />
+      <NavBar handleParameters={handleParametersFromNavBar} />
+      <SearchBar
+        updateSearchItem={updateSearchItem}
+        handleChange={handleChange}
+      />
       <SearchResults recipes={recipes} handleCardClick={handleCardClick} />
       {isOneRecipeSelected && <DisplayRecipe data={selectedRecipe} />}
     </div>
