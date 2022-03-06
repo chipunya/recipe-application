@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import NavBar from "./components/navBar";
-import SearchBar from "./components/searchBar/searchBar";
-import SearchResults from "./components/searchResults/searchResults";
-import { fetchFromApi } from "./utils";
-import DisplayRecipe from "./components/displayRecipe/displayRecipe";
+import NavBar from "./navBar";
+import SearchBar from "./searchBar/searchBar";
+import SearchResults from "./searchResults/searchResults";
+import { fetchFromApi } from "../utils";
+import DisplayRecipe from "./displayRecipe/displayRecipe";
 import { configure } from "@testing-library/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-function App() {
+function Home() {
   //states for fetching data
   const [recipes, setRecipes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -96,7 +94,7 @@ function App() {
         updateSearchItem={updateSearchItem}
         handleChange={handleChange}
       />
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search-result/:id" element={<DisplayRecipe />} />
@@ -105,7 +103,7 @@ function App() {
             element={<SearchResults recipes={recipes} />}
           />
         </Routes>
-      </Router> */}
+      </Router>
 
       {/* <SearchBar
         searchInput={searchInput}
@@ -118,7 +116,7 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
 
 // applicaiton id: c028241c
 

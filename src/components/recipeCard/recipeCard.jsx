@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import "./recipeCard.module.css";
 
@@ -13,7 +14,9 @@ const RecipeCard = ({ title, image, url, handleCardClick }) => {
       </div>
       <div className="card-content">
         <p>{title}</p>
-        <button className="button">get a recipe</button>
+        <Link className="button" to={"/search-result:foodId"}>
+          get a recipe
+        </Link>
       </div>
     </div>
   );
