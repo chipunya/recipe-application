@@ -9,9 +9,6 @@ const SearchResults = ({ recipes, handleCardClick }) => {
             image={recipe.recipe.image}
             key={i}
             url={recipe.recipe.url}
-            handleCardClick={(e) =>
-              handleCardClick(e, recipe.recipe.label, recipe.recipe.url)
-            }
           />
         ))}
     </div>

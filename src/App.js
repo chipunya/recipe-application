@@ -7,6 +7,7 @@ import SearchResults from "./components/searchResults/searchResults";
 import { fetchFromApi } from "./utils";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";
 import { configure } from "@testing-library/react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   //states for fetching data
   const [recipes, setRecipes] = useState([]);
@@ -87,14 +88,29 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar handleParameters={handleParametersFromNavBar} />
-      <SearchBar
+      <NavBar
+        handleParameters={handleParametersFromNavBar}
         searchInput={searchInput}
         updateSearchItem={updateSearchItem}
         handleChange={handleChange}
       />
-      <SearchResults recipes={recipes} handleCardClick={handleCardClick} />
-      {isOneRecipeSelected && <DisplayRecipe data={selectedRecipe} />}
+      <Router>
+        <Routes>
+          <Route
+            path="/search-result"
+            element={<SearchResults recipes={recipes} />}
+          />
+        </Routes>
+      </Router>
+
+      {/* <SearchBar
+        searchInput={searchInput}
+        updateSearchItem={updateSearchItem}
+        handleChange={handleChange}
+      /> */}
+      {/* <SearchResults recipes={recipes} handleCardClick={handleCardClick} /> */}
+      {/* {isOneRecipeSelected && <DisplayRecipe data={selectedRecipe} />} */}
+      {/* <Routes></Routes> */}
     </div>
   );
 }

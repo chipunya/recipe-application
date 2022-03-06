@@ -1,6 +1,13 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useState } from "react";
-const NavBar = ({ handleParameters }) => {
+import SearchBar from "./searchBar/searchBar";
+
+const NavBar = ({
+  handleParameters,
+  searchInput,
+  updateSearchItem,
+  handleChange,
+}) => {
   const [mealType, setMealType] = useState([]);
   const [dishType, setDishtype] = useState([]);
   const [cousineType, setCousineType] = useState([]);
@@ -431,6 +438,11 @@ const NavBar = ({ handleParameters }) => {
             <Nav.Link href="#home" onClick={clearSelections}>
               Clear all selections
             </Nav.Link>
+            <SearchBar
+              searchInput={searchInput}
+              updateSearchItem={updateSearchItem}
+              handleChange={handleChange}
+            />
           </Nav>
         </Navbar.Collapse>
       </Container>
