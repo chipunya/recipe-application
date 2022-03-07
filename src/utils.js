@@ -47,7 +47,7 @@ export const fetchFromApi = async (
     let APP_ID = "c028241c";
     let APP_KEY = "edc1d57799e55f304d3d4f8f6d6414c8";
     const response = await fetch(
-      `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}${mealTypeString}${dishTypeString}${cousineTypeString}${dietLabelString}${healthLabelString}${searchItemString}`
+      `https://api.edamam.com/api/recipes/v2?type=public${searchItemString}&app_id=${APP_ID}&app_key=${APP_KEY}${mealTypeString}${dishTypeString}${cousineTypeString}${dietLabelString}${healthLabelString}`
     );
 
     console.log(response);
