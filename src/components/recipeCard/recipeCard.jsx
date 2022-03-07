@@ -1,9 +1,10 @@
 import * as React from "react";
-
+import { Link } from "react-router-dom";
 import styles from "./recipeCard.module.css";
 
-const RecipeCard = ({ data, url, handleCardClick }) => {
-  console.log(data);
+const RecipeCard = ({ data }) => {
+  console.log(data.label);
+  const foodLabel = data.label.replaceAll(" ", "-");
   const cuisine =
     data.cuisineType[0].toUpperCase().slice(0, 1) +
     data.cuisineType[0].slice(1, data.cuisineType[0].length);
@@ -16,10 +17,7 @@ const RecipeCard = ({ data, url, handleCardClick }) => {
   const title =
     data.label.length > 30 ? data.label.substring(0, 28) + "..." : data.label;
   return (
-    <div
-      className={styles.recipeCard}
-      onClick={(e) => handleCardClick(e, data.label, url)}
-    >
+    <div className={styles.recipeCard}>
       <div className={styles.recipeCardImg}>
         <img src={data.image} alt="recipe picture" />
       </div>
@@ -33,7 +31,7 @@ const RecipeCard = ({ data, url, handleCardClick }) => {
           <span>{dish}</span>
           <span> | {meal}</span>
         </div>
-        <button className={styles.btn}>get a recipe</button>
+        <Link to={`/recipe/${foodLabel}`}>get a recipe</Link>
       </div>
     </div>
   );

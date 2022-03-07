@@ -1,22 +1,27 @@
 import styles from "./displayRecipe.module.css";
-const DisplayRecipe = ({ data }) => {
-  console.log(data);
-  const cuisine =
-    data.cuisineType[0].toUpperCase().slice(0, 1) +
-    data.cuisineType[0].slice(1, data.cuisineType[0].length);
-  const dish =
-    data.dishType[0].toUpperCase().slice(0, 1) +
-    data.dishType[0].slice(1, data.dishType[0].length);
-  const meal =
-    data.mealType[0].toUpperCase().slice(0, 1) +
-    data.mealType[0].slice(1, data.mealType[0].length);
-  const totalDaily = Object.values(data.totalDaily);
-  // console.log(totalDaily);
-  const totalNutrients = Object.values(data.totalNutrients);
-  console.log(totalNutrients);
+import { useParams } from "react-router-dom";
+import fetchData from "./fetchData";
+const DisplayRecipe = () => {
+  const name = useParams();
+  console.log(name);
+  fetchData(name);
+  // const cuisine =
+  //   data.cuisineType[0].toUpperCase().slice(0, 1) +
+  //   data.cuisineType[0].slice(1, data.cuisineType[0].length);
+  // const dish =
+  //   data.dishType[0].toUpperCase().slice(0, 1) +
+  //   data.dishType[0].slice(1, data.dishType[0].length);
+  // const meal =
+  //   data.mealType[0].toUpperCase().slice(0, 1) +
+  //   data.mealType[0].slice(1, data.mealType[0].length);
+  // const totalDaily = Object.values(data.totalDaily);
+  // // console.log(totalDaily);
+  // const totalNutrients = Object.values(data.totalNutrients);
+  // console.log(totalNutrients);
   return (
     <div className={styles.recipeContainer}>
-      <h1>{data.label}</h1>
+      <h1>Tis is display recipe page</h1>
+      {/* <h1>{data.label}</h1>
       <div className={styles.flex}>
         <div className={styles.section}>
           <img src={data.image} />
@@ -88,7 +93,7 @@ const DisplayRecipe = ({ data }) => {
               })}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
