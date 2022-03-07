@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/navBar";
+import NavBar from "./components/navBar/navBar";
 import SearchBar from "./components/searchBar/searchBar";
 import SearchResults from "./components/searchResults/searchResults";
 import { fetchFromApi } from "./utils";
@@ -56,7 +56,7 @@ function App() {
   // console.log(recipes);
   const handleCardClick = async (e, dishTitle, url) => {
     console.log(dishTitle, url);
-    document.querySelector(".search-results").style.display = "none";
+    // document.querySelector(".searchResults").style.display = "none";
     const data = await fetchFromApi(dishTitle);
     const receivedData = data.hits;
     const filteredData = receivedData.filter(
@@ -67,7 +67,7 @@ function App() {
     setIsOneRecipeSelected(true);
     // setSearchInput("");
   };
-  // console.log(selectedRecipe);
+  console.log(selectedRecipe);
   const handleParametersFromNavBar = (
     e,
     mealTypeFromNavBar,
@@ -85,15 +85,22 @@ function App() {
 
   console.log(mealType, dishType, cousineType, dietLabel, healthLabel);
 
+  console.log(isOneRecipeSelected);
   return (
     <div className="App">
-      <NavBar handleParameters={handleParametersFromNavBar} />
-      <SearchBar
-        searchInput={searchInput}
-        updateSearchItem={updateSearchItem}
-        handleChange={handleChange}
-      />
-      <SearchResults recipes={recipes} handleCardClick={handleCardClick} />
+      {!isOneRecipeSelected && (
+        <NavBar handleParameters={handleParametersFromNavBar} />
+      )}
+      {!isOneRecipeSelected && (
+        <SearchBar
+          searchInput={searchInput}
+          updateSearchItem={updateSearchItem}
+          handleChange={handleChange}
+        />
+      )}
+      {!isOneRecipeSelected && (
+        <SearchResults recipes={recipes} handleCardClick={handleCardClick} />
+      )}
       {isOneRecipeSelected && <DisplayRecipe data={selectedRecipe} />}
     </div>
   );

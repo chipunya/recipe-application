@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useState } from "react";
+import styles from "./navBar.module.css";
 const NavBar = ({ handleParameters }) => {
   const [mealType, setMealType] = useState([]);
   const [dishType, setDishtype] = useState([]);
@@ -44,14 +45,19 @@ const NavBar = ({ handleParameters }) => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className={styles.navBar} expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Hungry Dev</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <p className={styles.brand}>Hungry Dev</p>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#home" className={styles.NavDropdown}>
+              Home
+            </Nav.Link>
             <NavDropdown
+              className={styles.NavDropdown}
               title="Meal type"
               name="mealType"
               id="basic-nav-dropdown"

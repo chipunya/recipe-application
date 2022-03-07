@@ -1,0 +1,15 @@
+.navBar {
+  background-color: #faf1ee;
+  border: 1px solid #fabaa7;
+  color: black;
+}
+.brand {
+  color: #fe724c;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* background: #faf1ee;
+border: 1px solid #fabaa7; 
+  background: #fe724c;
+*/

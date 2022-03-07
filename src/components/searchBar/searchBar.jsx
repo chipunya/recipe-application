@@ -1,15 +1,21 @@
+import styles from "./searchBar.module.css";
 const SearchBar = ({ searchInput, handleChange, updateSearchItem }) => {
   return (
     <>
-      <h1>eat(); sleep(); code(); repeat();</h1>
-      <p> find recipes for your favorite meals, drinks and desserts </p>
+      <p className={styles.heading}>eat(); sleep(); code(); repeat();</p>
+      <p className={styles.intro}>
+        find recipes for your favorite meals, drinks and desserts
+      </p>
       <input
+        className={styles.input}
         type="text"
         value={searchInput}
         onChange={handleChange}
         placeholder="start searching"
       ></input>
-      <button onClick={updateSearchItem}>search</button>
+      <button className={styles.btn} onClick={updateSearchItem}>
+        search
+      </button>
     </>
   );
 };

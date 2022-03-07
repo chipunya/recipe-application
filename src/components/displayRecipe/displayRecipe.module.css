@@ -1,0 +1,17 @@
+.recipeContainer {
+}
+
+.flex {
+  display: flex;
+  margin: 10px;
+  gap: 10px;
+}
+
+.section {
+  width: 50%;
+  text-align: left;
+}
+
+.ingredientImg {
+  width: 100px;
+}
