@@ -26,46 +26,87 @@ const DisplayRecipe = ({ recipes }) => {
   console.log(totalNutrients);
   return (
     <div className={styles.recipeContainer}>
-      <h1>Tis is display recipe page</h1>
-      <h1>{data.label}</h1>
+      <h1 className={styles.title}>
+        <em>{data.label}</em>
+      </h1>
       <div className={styles.flex}>
         <div className={styles.section}>
-          <img src={data.image} />
+          <div className={styles.recipeImgContainer}>
+            <img src={data.image} className={styles.recipeImg} />
+          </div>
           <p>
-            Cuisine:
+            <b>Cuisine:</b>
             <em> {cuisine}</em>
           </p>
           <p>
-            Dish type: <em>{dish}</em>
+            <b>Dish type: </b>
+            <em>{dish}</em>
           </p>
           <p>
-            Meal type: <em>{meal}</em>
+            <b>Meal type:</b> <em>{meal}</em>
           </p>
+          <hr />
           <div>
-            <p>Diet labels:</p>
+            <p>
+              <b>Diet labels:</b>
+            </p>
             <em>
               {data &&
                 data.dietLabels.map((label, i) => {
-                  return <p key={i}>{label}</p>;
+                  return <span key={i}>{label} | </span>;
                 })}
             </em>
+            <hr />
           </div>
           <div>
-            <p>Health labels:</p>
+            <p>
+              <b>Health labels:</b>
+            </p>
             <em>
               {data &&
                 data.healthLabels.map((label, i) => {
-                  return <span key={i}>{label}, </span>;
+                  return <span key={i}>{label} | </span>;
                 })}
             </em>
           </div>
+          <hr />
+
           <div>
-            <h4>Recipe</h4>
-            <p>{data.totalTime} minutes</p>
-            {data &&
-              data.ingredientLines.map((line, i) => {
-                return <p key={i}>{line}</p>;
-              })}
+            <p>
+              <b>Required time: </b>
+              <em>{data.totalTime} minutes</em>
+            </p>
+            <h5>Recipe</h5>
+            <ul>
+              {data &&
+                data.ingredientLines.map((line, i) => {
+                  return (
+                    <li key={i} className={styles.recipeLines}>
+                      <em>{line}</em>
+                    </li>
+                  );
+                })}
+            </ul>
+
+            <hr />
+            <h4>Nutritional Information</h4>
+            <p>
+              <b>Calories: </b>
+              <em>{data.calories.toFixed(0)}</em> calories
+            </p>
+            <div className={styles.nutrients}>
+              {data &&
+                totalDaily.map((nutrient, i) => {
+                  return (
+                    <div key={i} className={styles.nutrient}>
+                      <p>{nutrient.label}</p>
+                      <p>
+                        {nutrient.quantity.toFixed(2)} {nutrient.unit}
+                      </p>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
         <div className={styles.section}>
@@ -83,21 +124,7 @@ const DisplayRecipe = ({ recipes }) => {
                 </div>
               );
             })}
-          <h4>Nutritional Information</h4>
-          <p>{data.calories.toFixed(0)} calories</p>
-          <div>
-            {data &&
-              totalDaily.map((nutrient, i) => {
-                return (
-                  <div className={styles.flex}>
-                    <p>{nutrient.label}</p>
-                    <p>
-                      {nutrient.quantity.toFixed(2)} {nutrient.unit}
-                    </p>
-                  </div>
-                );
-              })}
-          </div>
+          <hr />
         </div>
       </div>
     </div>
