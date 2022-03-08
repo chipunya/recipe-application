@@ -49,7 +49,6 @@ function Home({ getDataFromHome }) {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
-  getDataFromHome(recipes);
   const updateSearchItem = () => {
     setSearchItem(searchInput);
     setSearchInput("");
@@ -82,6 +81,7 @@ function Home({ getDataFromHome }) {
     setDietLabel(dietLabelFromNavBar);
     setHealthLabel(healthLabelFromNavBar);
   };
+  getDataFromHome(recipes);
 
   return (
     <div className="App">

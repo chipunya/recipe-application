@@ -27,7 +27,7 @@
 .btn {
   height: 30%;
   border: none;
-  margin-left: 5px;
+  margin-left: 15px;
   color: white;
   padding: 7px 20px;
   font-size: 12px;
@@ -35,4 +35,11 @@
   background: #fe724c;
   border-radius: 10px;
   font-size: 16px;
+}
+
+.btn:hover {
+  border: 1px solid #fe724c;
+  background-color: white;
+  color: #fe724c;
+  transition: 0.5s ease;
 }

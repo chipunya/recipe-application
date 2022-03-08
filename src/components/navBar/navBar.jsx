@@ -45,7 +45,7 @@ const NavBar = ({ handleParameters }) => {
   };
 
   return (
-    <Navbar className={styles.navBar} expand="lg">
+    <Navbar className={`navbar-dark ${styles.navBar}`} expand="lg">
       <Container>
         <Navbar.Brand>
           <p className={styles.brand}>Hungry Dev</p>
@@ -236,7 +236,9 @@ const NavBar = ({ handleParameters }) => {
                 Vegetarian
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link
+            <button
+              sx={{ color: "white" }}
+              className={styles.btn}
               onClick={(e) => {
                 handleParameters(
                   e,
@@ -249,8 +251,10 @@ const NavBar = ({ handleParameters }) => {
               }}
             >
               Apply selections
-            </Nav.Link>
-            <Nav.Link onClick={clearSelections}>Clear all selections</Nav.Link>
+            </button>
+            <button className={styles.btn} onClick={clearSelections}>
+              Clear all selections
+            </button>
           </Nav>
         </Navbar.Collapse>
       </Container>

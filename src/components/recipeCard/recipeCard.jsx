@@ -30,7 +30,9 @@ const RecipeCard = ({ data }) => {
           <span>{dish}</span>
           <span> | {meal}</span>
         </div>
-        <Link to={`/recipe/${foodLabel}`}>get a recipe</Link>
+        <Link className={styles.btn} to={`/recipe/${foodLabel}`}>
+          get a recipe
+        </Link>
       </div>
     </div>
   );

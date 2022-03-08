@@ -1,10 +1,11 @@
 .navBar {
-  background-color: #faf1ee;
+  background-color: #fe724c;
   border: 1px solid #fabaa7;
-  color: black;
+  font-size: 18px;
+  font-weight: 400;
 }
 .brand {
-  color: #fe724c;
+  color: white;
   font-weight: 700;
   font-size: 24px;
 }
@@ -13,3 +14,27 @@
 border: 1px solid #fabaa7; 
   background: #fe724c;
 */
+
+.btn {
+  margin-left: 15px;
+  color: white;
+  padding: 7px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid white;
+  background-color: #f8d8ce;
+  color: #fe724c;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.btn:hover {
+  border: 2px solid #fe724c;
+  background-color: white;
+  color: #fe724c;
+  transition: 0.5s ease;
+}
+
+:local(.navBar) {
+  color: white !important;
+}
