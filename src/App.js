@@ -5,14 +5,26 @@ import SearchBar from "./components/searchBar/searchBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";
+import { useState } from "react";
 function App() {
+  const [data, setData] = useState([]);
+  const getDataFromHome = (recipes) => {
+    // console.log(x);
+    setData(recipes);
+  };
   return (
     <div className="App">
       <div className="switch-page">
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/recipe/:foodName" element={<DisplayRecipe />} />
+            <Route
+              path="/"
+              element={<Home getDataFromHome={getDataFromHome} />}
+            />
+            <Route
+              path="/recipe/:foodName"
+              element={<DisplayRecipe recipes={data} />}
+            />
             {/* <Route path="/" element={<App/>}/> */}
           </Routes>
         </Router>

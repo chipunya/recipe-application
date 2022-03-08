@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./recipeCard.module.css";
 
 const RecipeCard = ({ data }) => {
-  console.log(data.label);
-  const foodLabel = data.label.replaceAll(" ", "-");
+  const foodLabel = data.label;
   const cuisine =
     data.cuisineType[0].toUpperCase().slice(0, 1) +
     data.cuisineType[0].slice(1, data.cuisineType[0].length);

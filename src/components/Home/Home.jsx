@@ -8,7 +8,7 @@ import { fetchFromApi } from "../utils";
 import DisplayRecipe from "../displayRecipe/displayRecipe";
 import { configure } from "@testing-library/react";
 import App from "../../App";
-function Home() {
+function Home({ getDataFromHome }) {
   //states for fetching data
   const [recipes, setRecipes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -49,7 +49,7 @@ function Home() {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
-
+  getDataFromHome(recipes);
   const updateSearchItem = () => {
     setSearchItem(searchInput);
     setSearchInput("");
@@ -85,21 +85,14 @@ function Home() {
 
   return (
     <div className="App">
-      {!isOneRecipeSelected && (
-        <NavBar handleParameters={handleParametersFromNavBar} />
-      )}
-      {!isOneRecipeSelected && (
-        <SearchBar
-          searchInput={searchInput}
-          updateSearchItem={updateSearchItem}
-          handleChange={handleChange}
-        />
-      )}
+      <NavBar handleParameters={handleParametersFromNavBar} />
 
-      {/* Routers */}
-
-      {!isOneRecipeSelected && <SearchResults recipes={recipes} />}
-      {/* {isOneRecipeSelected && <DisplayRecipe data={selectedRecipe} />} */}
+      <SearchBar
+        searchInput={searchInput}
+        updateSearchItem={updateSearchItem}
+        handleChange={handleChange}
+      />
+      <SearchResults recipes={recipes} />
     </div>
   );
 }
