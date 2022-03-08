@@ -30,11 +30,11 @@ const NavBar = ({ handleParameters }) => {
       setHealthLabel([...healthLabel, e.target.innerText.toLowerCase()]);
   };
 
-  // console.log("mealType", mealType);
-  // console.log("dishType", dishType);
-  // console.log("cousineType", cousineType);
-  // console.log("diet", dietLabel);
-  // console.log("health", healthLabel);
+  console.log("mealType", mealType);
+  console.log("dishType", dishType);
+  console.log("cousineType", cousineType);
+  console.log("diet", dietLabel);
+  console.log("health", healthLabel);
 
   const clearSelections = () => {
     setMealType([]);
@@ -47,15 +47,13 @@ const NavBar = ({ handleParameters }) => {
   return (
     <Navbar className={styles.navBar} expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <p className={styles.brand}>Hungry Dev</p>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home" className={styles.NavDropdown}>
-              Home
-            </Nav.Link>
+            <Nav.Link className={styles.NavDropdown}>Home</Nav.Link>
             <NavDropdown
               className={styles.NavDropdown}
               title="Meal type"
@@ -63,7 +61,6 @@ const NavBar = ({ handleParameters }) => {
               id="basic-nav-dropdown"
             >
               <NavDropdown.Item
-                href="#action/3.1"
                 title="mealType"
                 name="Breakfast"
                 onClick={saveParameter}
@@ -71,7 +68,6 @@ const NavBar = ({ handleParameters }) => {
                 Breakfast
               </NavDropdown.Item>
               <NavDropdown.Item
-                href="#action/3.2"
                 title="mealType"
                 name="Lunch"
                 onClick={saveParameter}
@@ -79,7 +75,6 @@ const NavBar = ({ handleParameters }) => {
                 Lunch
               </NavDropdown.Item>
               <NavDropdown.Item
-                href="#action/3.3"
                 title="mealType"
                 name="Dinner"
                 onClick={saveParameter}
@@ -87,7 +82,6 @@ const NavBar = ({ handleParameters }) => {
                 Dinner
               </NavDropdown.Item>
               <NavDropdown.Item
-                href="#action/3.3"
                 title="mealType"
                 name="Snack"
                 onClick={saveParameter}
@@ -95,7 +89,6 @@ const NavBar = ({ handleParameters }) => {
                 Snack
               </NavDropdown.Item>
               <NavDropdown.Item
-                href="#action/3.3"
                 title="mealType"
                 name="Teatime"
                 onClick={saveParameter}
@@ -104,323 +97,146 @@ const NavBar = ({ handleParameters }) => {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Dish type" id="basic-nav-dropdown">
-              <NavDropdown.Item
-                href="#action/3.1"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Biscuits and cookies
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.2"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Bread
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Cereals
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Desserts
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Drinks
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Main course
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Pancakes
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Salad
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Sandwiches
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Soup
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Starter
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="dishType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="dishType" onClick={saveParameter}>
                 Sweets
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Cousine type" id="basic-nav-dropdown">
-              <NavDropdown.Item
-                href="#action/3.1"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 American
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.2"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Asian
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Central Europe
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Eastern Europe
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 French
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Italian
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Japanese
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Mediterrian
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Mexican
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 Middle Eastern
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="cousineType"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="cousineType" onClick={saveParameter}>
                 South American
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Diet label" id="basic-nav-dropdown">
-              <NavDropdown.Item
-                href="#action/3.1"
-                title="diet"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="diet" onClick={saveParameter}>
                 Balanced
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.2"
-                title="diet"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="diet" onClick={saveParameter}>
                 High-fiber
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="diet"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="diet" onClick={saveParameter}>
                 High-protein
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="diet"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="diet" onClick={saveParameter}>
                 Low-carb
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="diet"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="diet" onClick={saveParameter}>
                 Low-fat
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="diet"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="diet" onClick={saveParameter}>
                 Low-sodium
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Health label" id="basic-nav-dropdown">
-              <NavDropdown.Item
-                href="#action/3.2"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Alcohol-free
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Dairy-free
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Egg-free
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Gluten-free
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Keto-friendly
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Kosher
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Low-sugar
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 No-oil-added
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Paleo
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Pescatarian
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Pork-free
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Red-meat-free
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Soy-free
               </NavDropdown.Item>{" "}
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Vegan
               </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action/3.3"
-                title="health"
-                onClick={saveParameter}
-              >
+              <NavDropdown.Item title="health" onClick={saveParameter}>
                 Vegetarian
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link
-              href="#home"
               onClick={(e) => {
                 handleParameters(
                   e,
@@ -434,9 +250,7 @@ const NavBar = ({ handleParameters }) => {
             >
               Apply selections
             </Nav.Link>
-            <Nav.Link href="#home" onClick={clearSelections}>
-              Clear all selections
-            </Nav.Link>
+            <Nav.Link onClick={clearSelections}>Clear all selections</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
