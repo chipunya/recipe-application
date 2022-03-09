@@ -1,6 +1,9 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useState } from "react";
 import styles from "./navBar.module.css";
+import { BsFillSuitHeartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
 const NavBar = ({ handleParameters }) => {
   const [mealType, setMealType] = useState([]);
   const [dishType, setDishtype] = useState([]);
@@ -254,6 +257,11 @@ const NavBar = ({ handleParameters }) => {
             </button>
             <button className={styles.btn} onClick={clearSelections}>
               Clear all selections
+            </button>
+            <button className={styles.heartBtn}>
+              <Link to="/favorite-recipes" className={styles.link}>
+                <BsFillSuitHeartFill className={styles.heartIcon} />
+              </Link>
             </button>
           </Nav>
         </Navbar.Collapse>

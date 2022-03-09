@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";
 import { useState } from "react";
+import FavoriteRecipes from "./FavoriteRecipes";
 function App() {
   const [data, setData] = useState([]);
 
@@ -19,6 +20,7 @@ function App() {
               path="/recipe/:foodName"
               element={<DisplayRecipe recipes={data} />}
             />
+            <Route path="/favorite-recipes" element={<FavoriteRecipes />} />
           </Routes>
         </Router>
       </div>

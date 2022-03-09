@@ -1,8 +1,36 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import styles from "./recipeCard.module.css";
+import { BsSuitHeart, BsFillSuitHeartFill } from "react-icons/bs";
+import { useState } from "react";
 
-const RecipeCard = ({ data }) => {
+const RecipeCard = ({ allRecipes, data }) => {
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const saveHeartedRecipe = (e, recipeTitle) => {
+    if (
+      favoriteRecipes &&
+      !favoriteRecipes.some((i) => i.label.includes(recipeTitle))
+    ) {
+      const heartedRecipe = allRecipes.filter(
+        (item) => item.recipe.label === recipeTitle
+      );
+      const heartedRecipeData = heartedRecipe[0].recipe;
+      console.log(heartedRecipeData);
+      const newArr = [];
+      const updatedArr = [...favoriteRecipes, heartedRecipeData];
+      setFavoriteRecipes(updatedArr);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify([...updatedArr, heartedRecipe])
+      );
+    }
+    if (favoriteRecipes.some((i) => i.label.includes(recipeTitle))) {
+      alert("this recipe is already added to your favorite recipes list! :)");
+    }
+    // console.log(heartedRecipeData);
+  };
+  console.log("FAV RECIPES", favoriteRecipes);
+
   const foodLabel = data.label;
   const cuisine =
     data.cuisineType[0].toUpperCase().slice(0, 1) +
@@ -18,6 +46,12 @@ const RecipeCard = ({ data }) => {
   return (
     <div className={styles.recipeCard}>
       <div className={styles.recipeCardImg}>
+        <button
+          className={styles.emptyHeart}
+          onClick={(e) => saveHeartedRecipe(e, data.label)}
+        >
+          <BsSuitHeart />
+        </button>
         <img src={data.image} alt="recipe picture" />
       </div>
       <div className={styles.cardContent}>
