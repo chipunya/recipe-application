@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";
 import { useState } from "react";
-import FavoriteRecipes from "./FavoriteRecipes";
+import FavoriteRecipes from "./components/favoriteRecipes/FavoriteRecipes";
 function App() {
   const [data, setData] = useState([]);
 

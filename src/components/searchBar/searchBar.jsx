@@ -4,7 +4,7 @@ const SearchBar = ({ searchInput, handleChange, updateSearchItem }) => {
     <>
       <p className={styles.heading}>eat(); sleep(); code(); repeat();</p>
       <p className={styles.intro}>
-        find recipes for your favorite meals, drinks and desserts
+        <em>find recipes for your favorite meals, drinks and desserts</em>
       </p>
       <input
         className={styles.input}
