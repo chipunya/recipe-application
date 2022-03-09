@@ -4,7 +4,7 @@ import styles from "./recipeCard.module.css";
 import { BsSuitHeart, BsFillSuitHeartFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 
-const RecipeCard = ({ allRecipes, data }) => {
+const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
   const favoritesFromLocalStorage =
     JSON.parse(localStorage.getItem("favorites")) || [];
   const [favoriteRecipes, setFavoriteRecipes] = useState(
@@ -36,27 +36,32 @@ const RecipeCard = ({ allRecipes, data }) => {
       }
     }
     if (!favoritesFromLocalStorage) {
-      localStorage.setItem("favorites", JSON.stringify([heartedRecipeData]));
+      localStorage.setItem("favorites", JSON.stringify(heartedRecipeData));
     }
   };
 
   console.log(clickedRecipe);
   console.log("favoriteRecipes", favoriteRecipes);
-  console.log("FAV RECIPES", favoritesFromLocalStorage);
+  console.log("localStorage", favoritesFromLocalStorage);
 
-  const foodLabel = data.label;
+  const foodLabel = data && data.label;
   const cuisine =
+    data &&
     data.cuisineType[0].toUpperCase().slice(0, 1) +
-    data.cuisineType[0].slice(1, data.cuisineType[0].length);
+      data.cuisineType[0].slice(1, data.cuisineType[0].length);
   const dish =
+    data &&
     data.dishType[0].toUpperCase().slice(0, 1) +
-    data.dishType[0].slice(1, data.dishType[0].length);
+      data.dishType[0].slice(1, data.dishType[0].length);
   const meal =
+    data &&
     data.mealType[0].toUpperCase().slice(0, 1) +
-    data.mealType[0].slice(1, data.mealType[0].length);
+      data.mealType[0].slice(1, data.mealType[0].length);
   const title =
-    data.label.length > 30 ? data.label.substring(0, 28) + "..." : data.label;
-  const fullTitle = data.label;
+    data && data.label.length > 30
+      ? data.label.substring(0, 28) + "..."
+      : data.label;
+  const fullTitle = data && data.label;
 
   return (
     <div className={styles.recipeCard}>
@@ -84,9 +89,21 @@ const RecipeCard = ({ allRecipes, data }) => {
           <span>{dish}</span>
           <span> | {meal}</span>
         </div>
-        <Link className={styles.btn} to={`/recipe/${foodLabel}`}>
-          get a recipe
-        </Link>
+        <div className={styles.flex}>
+          <Link to={`/recipe/${foodLabel}`}>
+            <button className={styles.btn}> {btnText}</button>
+          </Link>
+          {btnRemove ? (
+            <button
+              onClick={(e) => handleRemove(e, fullTitle)}
+              className={styles.btn}
+            >
+              {btnRemove}
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );
