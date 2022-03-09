@@ -53,3 +53,15 @@
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
 }
+.emptyHeart {
+  position: absolute;
+  color: red;
+  font-size: 30px;
+  right: 20px;
+  top: 5px;
+  border: none;
+  background-color: transparent;
+}
+.emptyHeart:hover {
+  transform: scale(1.3);
+}

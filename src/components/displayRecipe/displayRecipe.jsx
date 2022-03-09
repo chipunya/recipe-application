@@ -1,7 +1,8 @@
 import styles from "./displayRecipe.module.css";
 import { useParams } from "react-router-dom";
-import fetchData from "./fetchData";
+import { BsSuitHeart, BsFillSuitHeartFill } from "react-icons/bs";
 import { useState } from "react";
+
 const DisplayRecipe = ({ recipes }) => {
   const name = useParams();
   // const [selectedRecipe, setSelectedRecipe] = useState([]);
@@ -11,6 +12,33 @@ const DisplayRecipe = ({ recipes }) => {
   );
   const data = filtered[0].recipe;
   console.log(filtered);
+
+  const favoritesFromLocalStorage =
+    JSON.parse(localStorage.getItem("favorites")) || [];
+  const [favoriteRecipes, setFavoriteRecipes] = useState(
+    favoritesFromLocalStorage
+  );
+  const saveHeartedRecipe = () => {
+    const updatedRecipes = [data, ...favoriteRecipes];
+    setFavoriteRecipes(updatedRecipes);
+
+    if (favoritesFromLocalStorage) {
+      if (
+        !favoritesFromLocalStorage.some((i) => i.label.includes(data.label))
+      ) {
+        localStorage.setItem(
+          "favorites",
+          JSON.stringify([...favoritesFromLocalStorage, data])
+        );
+      } else {
+        alert("this recipe is already added to your favorite recipes list! :)");
+      }
+    }
+    if (!favoritesFromLocalStorage) {
+      localStorage.setItem("favorites", JSON.stringify(data));
+    }
+  };
+
   // fetchData(name);
   const cuisine =
     data.cuisineType[0].toUpperCase().slice(0, 1) +
@@ -30,6 +58,17 @@ const DisplayRecipe = ({ recipes }) => {
       <h1 className={styles.title}>
         <em>{data.label}</em>
       </h1>
+      <button
+        className={styles.emptyHeart}
+        onClick={(e) => saveHeartedRecipe(e, data.label)}
+      >
+        {favoritesFromLocalStorage &&
+        favoritesFromLocalStorage.some((i) => i.label.includes(data.label)) ? (
+          <BsFillSuitHeartFill name="fullHeart" />
+        ) : (
+          <BsSuitHeart name="emptyHeart" />
+        )}
+      </button>
       <div className={styles.flex}>
         <div className={styles.section}>
           <div className={styles.recipeImgContainer}>
