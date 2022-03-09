@@ -5,25 +5,23 @@ import { BsSuitHeart, BsFillSuitHeartFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 
 const RecipeCard = ({ allRecipes, data }) => {
-  const favoritesFromLocalStorage = JSON.parse(
-    localStorage.getItem("favorites")
+  const favoritesFromLocalStorage =
+    JSON.parse(localStorage.getItem("favorites")) || [];
+  const [favoriteRecipes, setFavoriteRecipes] = useState(
+    favoritesFromLocalStorage
   );
-  // const [favoriteRecipes, setFavoriteRecipes] = useState([
-  //   favoritesFromLocalStorage,
-  // ]);
-  // const [clickedRecipe, setClickedRecipe] = useState({});
-  // console.log(clickedRecipe);
-  // console.log(favoriteRecipes);
+  const [clickedRecipe, setClickedRecipe] = useState({});
 
   const saveHeartedRecipe = (e, recipeTitle) => {
-    console.log("Target", e.target);
     const heartedRecipe = allRecipes.filter(
       (item) => item.recipe.label === recipeTitle
     );
     const heartedRecipeData = heartedRecipe[0].recipe;
-    // setClickedRecipe(heartedRecipe);
-    // const updatedList = [...favoriteRecipes, heartedRecipeData];
-    // setFavoriteRecipes(updatedList);
+    console.log("heartedRecipeData", heartedRecipeData);
+    setClickedRecipe(heartedRecipeData);
+
+    const updatedRecipes = [heartedRecipeData, ...favoriteRecipes];
+    setFavoriteRecipes(updatedRecipes);
 
     if (favoritesFromLocalStorage) {
       if (
@@ -40,8 +38,11 @@ const RecipeCard = ({ allRecipes, data }) => {
     if (!favoritesFromLocalStorage) {
       localStorage.setItem("favorites", JSON.stringify([heartedRecipeData]));
     }
-    console.log("FAV RECIPES", favoritesFromLocalStorage);
   };
+
+  console.log(clickedRecipe);
+  console.log("favoriteRecipes", favoriteRecipes);
+  console.log("FAV RECIPES", favoritesFromLocalStorage);
 
   const foodLabel = data.label;
   const cuisine =
@@ -56,7 +57,6 @@ const RecipeCard = ({ allRecipes, data }) => {
   const title =
     data.label.length > 30 ? data.label.substring(0, 28) + "..." : data.label;
   const fullTitle = data.label;
-  console.log(favoritesFromLocalStorage);
 
   return (
     <div className={styles.recipeCard}>
