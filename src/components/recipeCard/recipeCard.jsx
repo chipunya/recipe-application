@@ -56,8 +56,7 @@ const RecipeCard = ({ allRecipes, data }) => {
   const title =
     data.label.length > 30 ? data.label.substring(0, 28) + "..." : data.label;
   const fullTitle = data.label;
-  console.log(favoritesFromLocalStorage);
-
+  // console.log(favoritesFromLocalStorage);
   return (
     <div className={styles.recipeCard}>
       <div className={styles.recipeCardImg}>
