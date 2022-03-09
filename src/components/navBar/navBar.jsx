@@ -33,11 +33,11 @@ const NavBar = ({ handleParameters }) => {
       setHealthLabel([...healthLabel, e.target.innerText.toLowerCase()]);
   };
 
-  console.log("mealType", mealType);
-  console.log("dishType", dishType);
-  console.log("cousineType", cousineType);
-  console.log("diet", dietLabel);
-  console.log("health", healthLabel);
+  // console.log("mealType", mealType);
+  // console.log("dishType", dishType);
+  // console.log("cousineType", cousineType);
+  // console.log("diet", dietLabel);
+  // console.log("health", healthLabel);
 
   const clearSelections = () => {
     setMealType([]);
