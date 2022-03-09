@@ -10,6 +10,7 @@ const DisplayRecipe = ({ recipes }) => {
     (item) => item.recipe.label === name.foodName
   );
   const data = filtered[0].recipe;
+  console.log(filtered);
   // fetchData(name);
   const cuisine =
     data.cuisineType[0].toUpperCase().slice(0, 1) +

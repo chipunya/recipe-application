@@ -46,6 +46,18 @@ function Home({ getDataFromHome }) {
     setTimeOutId(newTimeOutId);
   }, [searchItem, mealType, dishType, cousineType, dietLabel, healthLabel]);
 
+  useEffect(() => {
+    if (timeOutId) {
+      clearTimeout(timeOutId);
+    }
+    const newTimeOutId = setTimeout(async () => {
+      const data = await fetchFromApi("lemon");
+      setRecipes(data.hits);
+      setSearchItem("");
+      setTimeOutId(null);
+    }, 500);
+    setTimeOutId(newTimeOutId);
+  }, []);
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
@@ -86,7 +98,6 @@ function Home({ getDataFromHome }) {
   return (
     <div className="App">
       <NavBar handleParameters={handleParametersFromNavBar} />
-
       <SearchBar
         searchInput={searchInput}
         updateSearchItem={updateSearchItem}

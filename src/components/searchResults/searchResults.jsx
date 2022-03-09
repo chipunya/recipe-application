@@ -4,7 +4,9 @@ const SearchResults = ({ recipes }) => {
   return (
     <div className={styles.searchResults}>
       {recipes &&
-        recipes.map((recipe, i) => <RecipeCard data={recipe.recipe} key={i} />)}
+        recipes.map((recipe, i) => (
+          <RecipeCard allRecipes={recipes} data={recipe.recipe} key={i} />
+        ))}
     </div>
   );
 };
