@@ -4,7 +4,7 @@ import fetchData from "./fetchData";
 import { useState } from "react";
 const DisplayRecipe = ({ recipes }) => {
   const name = useParams();
-  const [selectedRecipe, setSelectedRecipe] = useState([]);
+  // const [selectedRecipe, setSelectedRecipe] = useState([]);
   // console.log(name.foodName);
   const filtered = recipes.filter(
     (item) => item.recipe.label === name.foodName

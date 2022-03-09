@@ -5,9 +5,6 @@ import NavBar from "../navBar/navBar";
 import SearchBar from "../searchBar/searchBar";
 import SearchResults from "../searchResults/searchResults";
 import { fetchFromApi } from "../utils";
-import DisplayRecipe from "../displayRecipe/displayRecipe";
-import { configure } from "@testing-library/react";
-import App from "../../App";
 function Home({ getDataFromHome }) {
   //states for fetching data
   const [recipes, setRecipes] = useState([]);
@@ -61,24 +58,26 @@ function Home({ getDataFromHome }) {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
+
+  useEffect(() => {
+    getDataFromHome(recipes);
+  }, [recipes]);
+
   const updateSearchItem = () => {
     setSearchItem(searchInput);
     setSearchInput("");
   };
   // console.log(recipes);
-  const handleCardClick = async (e, dishTitle, url) => {
-    console.log(dishTitle, url);
-    // document.querySelector(".searchResults").style.display = "none";
-    const data = await fetchFromApi(dishTitle);
-    const receivedData = data.hits;
-    const filteredData = receivedData.filter(
-      (recipe) => recipe.recipe.url === url
-    );
-    console.log(filteredData[0].recipe);
-    setSelectedRecipe(filteredData[0].recipe);
-    setIsOneRecipeSelected(true);
-    // setSearchInput("");
-  };
+  // const handleCardClick = async (e, dishTitle, url) => {
+  //   const data = await fetchFromApi(dishTitle);
+  //   const receivedData = data.hits;
+  //   const filteredData = receivedData.filter(
+  //     (recipe) => recipe.recipe.url === url
+  //   );
+  //   setSelectedRecipe(filteredData[0].recipe);
+  //   setIsOneRecipeSelected(true);
+  // setSearchInput("");
+  // };
   const handleParametersFromNavBar = (
     e,
     mealTypeFromNavBar,
@@ -93,7 +92,7 @@ function Home({ getDataFromHome }) {
     setDietLabel(dietLabelFromNavBar);
     setHealthLabel(healthLabelFromNavBar);
   };
-  getDataFromHome(recipes);
+  // getDataFromHome(recipes);
 
   return (
     <div className="App">
