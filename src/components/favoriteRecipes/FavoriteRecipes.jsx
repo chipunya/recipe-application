@@ -3,36 +3,24 @@ import styles from "./FavoriteRecipes.module.css";
 import { useEffect, useState } from "react";
 const FavoriteRecipes = ({ fetchedData }) => {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+  //parsing data from local storage when first time rendering
   useEffect(() => {
     const itemsFromLocal = JSON.parse(localStorage.getItem("favorites"));
     setFavoriteRecipes(itemsFromLocal);
-    filterData();
   }, []);
-  const filterData = () => {
-    const itemsFromLocal = JSON.parse(localStorage.getItem("favorites"));
-    const arr = [];
-    for (let el of itemsFromLocal) {
-      for (let item of fetchedData) {
-        if (el === item.recipe.label) arr.push(item.recipe);
-      }
-    }
-    setFiltered(arr);
-  };
-
+  //function that removes item from fav list
   const handleRemove = (label) => {
-    console.log(label);
-    const arrFiltered = favoriteRecipes.filter((item) => item !== label);
-    setFavoriteRecipes(arrFiltered);
+    console.log(favoriteRecipes);
+    const arrFiltered = favoriteRecipes.filter((item) => item.label !== label);
     localStorage.setItem("favorites", JSON.stringify(arrFiltered));
-    filterData();
+    setFavoriteRecipes(arrFiltered);
   };
   return (
     <div>
       <h1 className={styles.title}> Your Favorite Recipes</h1>
       <p>You have saved {favoriteRecipes.length} recipes so far.</p>
       <div className={styles.container}>
-        {filtered.map((item, i) => {
+        {favoriteRecipes.map((item, i) => {
           return (
             <RecipeCard
               key={i}

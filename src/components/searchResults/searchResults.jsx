@@ -7,21 +7,21 @@ const SearchResults = ({ recipes }) => {
     const itemsFromLocal = localStorage.getItem("favorites");
     setFavoriteMeals(JSON.parse(itemsFromLocal));
   }, []);
-  const handleClick = (clickedMealName) => {
+  const handleClick = (clickedMeal) => {
     const itemsFromLocal = JSON.parse(localStorage.getItem("favorites"));
     if (itemsFromLocal) {
-      if (!itemsFromLocal.includes(clickedMealName)) {
+      if (!itemsFromLocal.includes(clickedMeal)) {
         localStorage.setItem(
           "favorites",
-          JSON.stringify([...itemsFromLocal, clickedMealName])
+          JSON.stringify([...itemsFromLocal, clickedMeal])
         );
-        setFavoriteMeals([...itemsFromLocal, clickedMealName]);
+        setFavoriteMeals([...itemsFromLocal, clickedMeal]);
       } else {
         alert("It is already in favorites :)");
       }
     } else {
-      localStorage.setItem("favorites", JSON.stringify([clickedMealName]));
-      setFavoriteMeals([clickedMealName]);
+      localStorage.setItem("favorites", JSON.stringify([clickedMeal]));
+      setFavoriteMeals([clickedMeal]);
     }
   };
   return (
