@@ -9,9 +9,11 @@ const FavoriteRecipes = ({ fetchedData }) => {
     setFavoriteRecipes(itemsFromLocal);
   }, []);
   //function that removes item from fav list
-  const handleRemove = (label) => {
+  const handleRemove = (imgLink) => {
     console.log(favoriteRecipes);
-    const arrFiltered = favoriteRecipes.filter((item) => item.label !== label);
+    const arrFiltered = favoriteRecipes.filter(
+      (item) => item.image !== imgLink
+    );
     localStorage.setItem("favorites", JSON.stringify(arrFiltered));
     setFavoriteRecipes(arrFiltered);
   };
