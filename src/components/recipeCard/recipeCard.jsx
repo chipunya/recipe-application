@@ -4,45 +4,53 @@ import styles from "./recipeCard.module.css";
 import { BsSuitHeart, BsFillSuitHeartFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 
-const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
-  const favoritesFromLocalStorage =
-    JSON.parse(localStorage.getItem("favorites")) || [];
-  const [favoriteRecipes, setFavoriteRecipes] = useState(
-    favoritesFromLocalStorage
-  );
+const RecipeCard = ({
+  data,
+  btnText,
+  btnRemove,
+  handleRemove,
+  handleClick,
+  favoritesFromLocalStorage,
+}) => {
+  // console.log(data);
+  // const favoritesFromLocalStorage =
+  //   JSON.parse(localStorage.getItem("favorites")) || [];
+  // const [favoriteRecipes, setFavoriteRecipes] = useState(
+  //   favoritesFromLocalStorage
+  // );
   const [clickedRecipe, setClickedRecipe] = useState({});
+  // console.log(favoriteRecipes);
+  // const saveHeartedRecipe = (e, recipeTitle) => {
+  //   const heartedRecipe = allRecipes.filter(
+  //     (item) => item.recipe.label === recipeTitle
+  //   );
+  //   const heartedRecipeData = heartedRecipe[0].recipe;
+  //   // console.log("heartedRecipeData", heartedRecipeData);
+  //   setClickedRecipe(heartedRecipeData);
 
-  const saveHeartedRecipe = (e, recipeTitle) => {
-    const heartedRecipe = allRecipes.filter(
-      (item) => item.recipe.label === recipeTitle
-    );
-    const heartedRecipeData = heartedRecipe[0].recipe;
-    console.log("heartedRecipeData", heartedRecipeData);
-    setClickedRecipe(heartedRecipeData);
+  //   const updatedRecipes = [heartedRecipeData, ...favoriteRecipes];
+  //   setFavoriteRecipes(updatedRecipes);
 
-    const updatedRecipes = [heartedRecipeData, ...favoriteRecipes];
-    setFavoriteRecipes(updatedRecipes);
+  //   if (favoritesFromLocalStorage) {
+  //     if (
+  //       !favoritesFromLocalStorage.some((i) => i.label.includes(recipeTitle))
+  //     ) {
+  //       localStorage.setItem(
+  //         "favorites",
+  //         JSON.stringify([...favoritesFromLocalStorage, heartedRecipeData])
+  //       );
+  //     } else {
+  //       alert("this recipe is already added to your favorite recipes list! :)");
+  //     }
+  //   }
+  //   if (!favoritesFromLocalStorage) {
+  //     localStorage.setItem("favorites", JSON.stringify(heartedRecipeData));
+  //   }
+  // };
 
-    if (favoritesFromLocalStorage) {
-      if (
-        !favoritesFromLocalStorage.some((i) => i.label.includes(recipeTitle))
-      ) {
-        localStorage.setItem(
-          "favorites",
-          JSON.stringify([...favoritesFromLocalStorage, heartedRecipeData])
-        );
-      } else {
-        alert("this recipe is already added to your favorite recipes list! :)");
-      }
-    }
-    if (!favoritesFromLocalStorage) {
-      localStorage.setItem("favorites", JSON.stringify(heartedRecipeData));
-    }
-  };
-
-  console.log(clickedRecipe);
-  console.log("favoriteRecipes", favoriteRecipes);
-  console.log("localStorage", favoritesFromLocalStorage);
+  // // console.log(clickedRecipe);
+  // console.log("favoriteRecipes", favoriteRecipes);
+  // console.log("localStorage", favoritesFromLocalStorage);
 
   const foodLabel = data && data.label;
   const cuisine =
@@ -68,10 +76,10 @@ const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
       <div className={styles.recipeCardImg}>
         <button
           className={styles.emptyHeart}
-          onClick={(e) => saveHeartedRecipe(e, data.label)}
+          onClick={() => handleClick(data.label)}
         >
           {favoritesFromLocalStorage &&
-          favoritesFromLocalStorage.some((i) => i.label.includes(fullTitle)) ? (
+          favoritesFromLocalStorage.some((i) => i === fullTitle) ? (
             <BsFillSuitHeartFill name="fullHeart" />
           ) : (
             <BsSuitHeart name="emptyHeart" />
@@ -95,7 +103,7 @@ const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
           </Link>
           {btnRemove ? (
             <button
-              onClick={(e) => handleRemove(e, fullTitle)}
+              onClick={() => handleRemove(fullTitle)}
               className={styles.btn}
             >
               {btnRemove}
