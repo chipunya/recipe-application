@@ -58,7 +58,6 @@ function Home({ getDataFromHome }) {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
-
   useEffect(() => {
     getDataFromHome(recipes);
   }, [recipes]);
@@ -67,17 +66,6 @@ function Home({ getDataFromHome }) {
     setSearchItem(searchInput);
     setSearchInput("");
   };
-  // console.log(recipes);
-  // const handleCardClick = async (e, dishTitle, url) => {
-  //   const data = await fetchFromApi(dishTitle);
-  //   const receivedData = data.hits;
-  //   const filteredData = receivedData.filter(
-  //     (recipe) => recipe.recipe.url === url
-  //   );
-  //   setSelectedRecipe(filteredData[0].recipe);
-  //   setIsOneRecipeSelected(true);
-  // setSearchInput("");
-  // };
   const handleParametersFromNavBar = (
     e,
     mealTypeFromNavBar,
@@ -93,7 +81,7 @@ function Home({ getDataFromHome }) {
     setHealthLabel(healthLabelFromNavBar);
   };
   // getDataFromHome(recipes);
-
+  console.log(recipes);
   return (
     <div className="App">
       <NavBar handleParameters={handleParametersFromNavBar} />
