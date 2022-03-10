@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import "./Home.css";
+import styles from "./Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "../navBar/navBar";
 import SearchBar from "../searchBar/searchBar";
 import SearchResults from "../searchResults/searchResults";
+import Pages from "../pages/Pages";
+
 import { fetchFromApi } from "../utils";
 function Home({ getDataFromHome }) {
   //states for fetching data
@@ -11,6 +13,7 @@ function Home({ getDataFromHome }) {
   const [searchInput, setSearchInput] = useState("");
   const [searchItem, setSearchItem] = useState("");
   const [timeOutId, setTimeOutId] = useState(null);
+  const [nextPageLink, setNextPageLink] = useState("");
   const [isOneRecipeSelected, setIsOneRecipeSelected] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState({});
   //states for saving search parameters
@@ -37,6 +40,7 @@ function Home({ getDataFromHome }) {
         healthLabel
       );
       setRecipes(data.hits);
+      setNextPageLink(data._links.next.href);
       setSearchItem("");
       setTimeOutId(null);
     }, 500);
@@ -50,14 +54,17 @@ function Home({ getDataFromHome }) {
     const newTimeOutId = setTimeout(async () => {
       const data = await fetchFromApi("lemon");
       setRecipes(data.hits);
+      setNextPageLink(data._links.next.href);
       setSearchItem("");
       setTimeOutId(null);
     }, 500);
     setTimeOutId(newTimeOutId);
   }, []);
+
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
+
   useEffect(() => {
     getDataFromHome(recipes);
   }, [recipes]);
@@ -81,15 +88,33 @@ function Home({ getDataFromHome }) {
     setHealthLabel(healthLabelFromNavBar);
   };
   // getDataFromHome(recipes);
-  console.log(recipes);
+  console.log(nextPageLink);
+
+  const displayNextPage = async (nextPageUrl) => {
+    console.log(nextPageUrl);
+    try {
+      const response = await fetch(nextPageUrl);
+      // console.log(response);
+      const data = await response.json();
+      setRecipes(data.hits);
+      setNextPageLink(data._links.next.href);
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
-    <div className="App">
+    <div className={styles.App}>
       <NavBar handleParameters={handleParametersFromNavBar} />
       <SearchBar
         searchInput={searchInput}
         updateSearchItem={updateSearchItem}
         handleChange={handleChange}
       />
+      <div className={styles.container}>
+        <Pages displayNextPage={() => displayNextPage(nextPageLink)} />
+      </div>
       <SearchResults recipes={recipes} />
     </div>
   );

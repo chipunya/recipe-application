@@ -6,8 +6,17 @@ export const fetchFromApi = async (
   dietLabel,
   healthLabel
 ) => {
+  //basic parameters
+  let APP_ID = "&app_id=c028241c";
+  let APP_KEY = "&app_key=edc1d57799e55f304d3d4f8f6d6414c8";
+  let baseUrl =
+    "https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/recipes/v2?type=public";
+
+  //required parameter
   const searchItemString =
     searchItem.trim().length > 0 ? "&q=" + searchItem : "";
+
+  //optional parameters
   const mealTypeString = !mealType
     ? ""
     : mealType.length > 0
@@ -44,15 +53,15 @@ export const fetchFromApi = async (
     healthLabelString
   );
   try {
-    let APP_ID = "c028241c";
-    let APP_KEY = "edc1d57799e55f304d3d4f8f6d6414c8";
     const response = await fetch(
-      `https://api.edamam.com/api/recipes/v2?type=public${searchItemString}&app_id=${APP_ID}&app_key=${APP_KEY}${mealTypeString}${dishTypeString}${cousineTypeString}${dietLabelString}${healthLabelString}`
+      `${baseUrl}${searchItemString}${APP_ID}${APP_KEY}${mealTypeString}${dishTypeString}${cousineTypeString}${dietLabelString}${healthLabelString}`
     );
 
-    console.log(response);
+    // console.log(response);
 
     const data = await response.json();
+    // console.log(data._links.next.href);
+
     return data;
   } catch (err) {
     console.error(err);
