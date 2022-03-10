@@ -76,7 +76,7 @@ const RecipeCard = ({
       <div className={styles.recipeCardImg}>
         <button className={styles.emptyHeart} onClick={() => handleClick(data)}>
           {favoritesFromLocalStorage &&
-          favoritesFromLocalStorage.some((i) => i === fullTitle) ? (
+          favoritesFromLocalStorage.some((i) => i.label === fullTitle) ? (
             <BsFillSuitHeartFill name="fullHeart" />
           ) : (
             <BsSuitHeart name="emptyHeart" />
