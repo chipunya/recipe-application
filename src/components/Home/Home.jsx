@@ -50,7 +50,7 @@ function Home({ getDataFromHome }) {
       clearTimeout(timeOutId);
     }
     const newTimeOutId = setTimeout(async () => {
-      const data = await fetchFromApi("grill");
+      const data = await fetchFromApi("kebab");
       setRecipes(data.hits);
       setNextPageLink(data._links.next.href);
       setSearchItem("");
