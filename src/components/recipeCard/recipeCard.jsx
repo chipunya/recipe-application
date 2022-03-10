@@ -17,7 +17,6 @@ const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
       (item) => item.recipe.label === recipeTitle
     );
     const heartedRecipeData = heartedRecipe[0].recipe;
-    console.log("heartedRecipeData", heartedRecipeData);
     setClickedRecipe(heartedRecipeData);
 
     const updatedRecipes = [heartedRecipeData, ...favoriteRecipes];
@@ -40,9 +39,9 @@ const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
     }
   };
 
-  console.log(clickedRecipe);
-  console.log("favoriteRecipes", favoriteRecipes);
-  console.log("localStorage", favoritesFromLocalStorage);
+  // console.log(clickedRecipe);
+  // console.log("favoriteRecipes", favoriteRecipes);
+  // console.log("localStorage", favoritesFromLocalStorage);
 
   const foodLabel = data && data.label;
   const cuisine =
