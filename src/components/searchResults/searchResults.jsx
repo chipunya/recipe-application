@@ -10,7 +10,7 @@ const SearchResults = ({ recipes }) => {
   const handleClick = (clickedMeal) => {
     const itemsFromLocal = JSON.parse(localStorage.getItem("favorites"));
     if (itemsFromLocal) {
-      if (!itemsFromLocal.includes(clickedMeal)) {
+      if (!itemsFromLocal.some((item) => item.image === clickedMeal.image)) {
         localStorage.setItem(
           "favorites",
           JSON.stringify([...itemsFromLocal, clickedMeal])
