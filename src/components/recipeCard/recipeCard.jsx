@@ -2,48 +2,15 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styles from "./recipeCard.module.css";
 import { BsSuitHeart, BsFillSuitHeartFill } from "react-icons/bs";
-import { useState, useEffect } from "react";
 
-const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
-  const favoritesFromLocalStorage =
-    JSON.parse(localStorage.getItem("favorites")) || [];
-  const [favoriteRecipes, setFavoriteRecipes] = useState(
-    favoritesFromLocalStorage
-  );
-  const [clickedRecipe, setClickedRecipe] = useState({});
-
-  const saveHeartedRecipe = (e, recipeTitle) => {
-    const heartedRecipe = allRecipes.filter(
-      (item) => item.recipe.label === recipeTitle
-    );
-    const heartedRecipeData = heartedRecipe[0].recipe;
-    console.log("heartedRecipeData", heartedRecipeData);
-    setClickedRecipe(heartedRecipeData);
-
-    const updatedRecipes = [heartedRecipeData, ...favoriteRecipes];
-    setFavoriteRecipes(updatedRecipes);
-
-    if (favoritesFromLocalStorage) {
-      if (
-        !favoritesFromLocalStorage.some((i) => i.label.includes(recipeTitle))
-      ) {
-        localStorage.setItem(
-          "favorites",
-          JSON.stringify([...favoritesFromLocalStorage, heartedRecipeData])
-        );
-      } else {
-        alert("this recipe is already added to your favorite recipes list! :)");
-      }
-    }
-    if (!favoritesFromLocalStorage) {
-      localStorage.setItem("favorites", JSON.stringify(heartedRecipeData));
-    }
-  };
-
-  console.log(clickedRecipe);
-  console.log("favoriteRecipes", favoriteRecipes);
-  console.log("localStorage", favoritesFromLocalStorage);
-
+const RecipeCard = ({
+  data,
+  btnText,
+  btnRemove,
+  handleRemove,
+  handleClick,
+  favoritesFromLocalStorage,
+}) => {
   const foodLabel = data && data.label;
   const cuisine =
     data &&
@@ -66,12 +33,9 @@ const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
   return (
     <div className={styles.recipeCard}>
       <div className={styles.recipeCardImg}>
-        <button
-          className={styles.emptyHeart}
-          onClick={(e) => saveHeartedRecipe(e, data.label)}
-        >
+        <button className={styles.emptyHeart} onClick={() => handleClick(data)}>
           {favoritesFromLocalStorage &&
-          favoritesFromLocalStorage.some((i) => i.label.includes(fullTitle)) ? (
+          favoritesFromLocalStorage.some((i) => i.image === data.image) ? (
             <BsFillSuitHeartFill name="fullHeart" />
           ) : (
             <BsSuitHeart name="emptyHeart" />
@@ -95,7 +59,7 @@ const RecipeCard = ({ allRecipes, data, btnText, btnRemove, handleRemove }) => {
           </Link>
           {btnRemove ? (
             <button
-              onClick={(e) => handleRemove(e, fullTitle)}
+              onClick={() => handleRemove(data.image)}
               className={styles.btn}
             >
               {btnRemove}

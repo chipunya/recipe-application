@@ -20,7 +20,10 @@ function App() {
               path="/recipe/:foodName"
               element={<DisplayRecipe recipes={data} />}
             />
-            <Route path="/favorite-recipes" element={<FavoriteRecipes />} />
+            <Route
+              path="/favorite-recipes"
+              element={<FavoriteRecipes fetchedData={data} />}
+            />
           </Routes>
         </Router>
       </div>
