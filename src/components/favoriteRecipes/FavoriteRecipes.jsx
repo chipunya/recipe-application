@@ -16,11 +16,9 @@ const FavoriteRecipes = ({ fetchedData }) => {
   //function that removes item from fav list
   const handleRemove = (imgLink) => {
     console.log(favoriteRecipes);
-    const arrFiltered = favoriteRecipes.filter(
-      (item) => item.image !== imgLink
-    );
+    const arrFiltered = recipeCards.filter((item) => item.image !== imgLink);
     localStorage.setItem("favorites", JSON.stringify(arrFiltered));
-    setFavoriteRecipes(arrFiltered);
+    updateRecipeCards(arrFiltered);
   };
 
   function handleOnDragEnd(result) {
@@ -28,13 +26,12 @@ const FavoriteRecipes = ({ fetchedData }) => {
     const items = Array.from(recipeCards);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
     updateRecipeCards(items);
   }
   return (
     <div>
       <h1 className={styles.title}> Your Favorite Recipes</h1>
-      <p>You have saved {favoriteRecipes.length} recipes so far.</p>
+      <p>You have saved {recipeCards.length} recipes so far.</p>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId={styles.container}>
           {(provided) => (
