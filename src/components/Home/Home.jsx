@@ -26,6 +26,7 @@ function Home({ getDataFromHome }) {
 
   useEffect(() => {
     if (!searchItem) {
+      setIsLoading(false);
       return;
     }
     if (timeOutId) {
@@ -75,7 +76,7 @@ function Home({ getDataFromHome }) {
   const updateSearchItem = () => {
     setIsLoading(true);
     setSearchItem(searchInput);
-    setSearchInput("");
+    // setSearchInput("");
   };
   const handleParametersFromNavBar = (
     e,
@@ -91,8 +92,23 @@ function Home({ getDataFromHome }) {
     setDietLabel(dietLabelFromNavBar);
     setHealthLabel(healthLabelFromNavBar);
   };
-  // getDataFromHome(recipes);
-  // console.log(nextPageLink);
+  //speech recognition
+
+  const SpeechRecognition =
+    window.speechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.onstart = function () {
+    console.log("mic is activated");
+  };
+  recognition.onresult = function (e) {
+    console.log(e.results[0][0].transcript);
+    setSearchInput(e.results[0][0].transcript);
+    updateSearchItem();
+  };
+  const voiceRecognize = () => {
+    console.log("click");
+    recognition.start();
+  };
 
   const displayNextPage = async (nextPageUrl) => {
     console.log(nextPageUrl);
@@ -119,6 +135,7 @@ function Home({ getDataFromHome }) {
             searchInput={searchInput}
             updateSearchItem={updateSearchItem}
             handleChange={handleChange}
+            voiceRecognize={voiceRecognize}
           />
           <div className={styles.container}>
             <Pages displayNextPage={() => displayNextPage(nextPageLink)} />

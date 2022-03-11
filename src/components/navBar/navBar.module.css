@@ -1,7 +1,7 @@
 .navBar {
   background-color: #fe724c;
   border: 1px solid #fabaa7;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 .brand {
@@ -57,9 +57,12 @@
 :local(.navBar) {
   color: white !important;
 }
-
-.btnOnNavbar {
+.NavDropdown {
   color: white !important;
+}
+
+/* .btnOnNavbar {
+  color: white;
   padding: 5px 10px;
   font-size: 12px;
   font-weight: 700;
@@ -68,4 +71,4 @@
   color: #fe724c;
   border-radius: 10px;
   font-size: 16px;
-}
+} */
