@@ -32,13 +32,13 @@
   padding: 10px 20px;
   font-size: 12px;
   font-weight: 700;
-  background: #fe724c;
+  border: 1px solid #fe724c;
+  background-color: #fe724c;
   border-radius: 10px;
   font-size: 16px;
 }
 
 .btn:hover {
-  border: 1px solid #fe724c;
   background-color: white;
   color: #fe724c;
   transition: 0.5s ease;

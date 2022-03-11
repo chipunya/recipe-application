@@ -7,6 +7,7 @@ import SearchResults from "../searchResults/searchResults";
 import Pages from "../pages/Pages";
 
 import { fetchFromApi } from "../utils";
+import LoadingPage from "../loadingPage/LoadingPage";
 function Home({ getDataFromHome }) {
   //states for fetching data
   const [recipes, setRecipes] = useState([]);
@@ -14,7 +15,8 @@ function Home({ getDataFromHome }) {
   const [searchItem, setSearchItem] = useState("");
   const [timeOutId, setTimeOutId] = useState(null);
   const [nextPageLink, setNextPageLink] = useState("");
-
+  //loading state
+  const [isLoading, setIsLoading] = useState(true);
   //states for saving search parameters
   const [mealType, setMealType] = useState([]);
   const [dishType, setDishtype] = useState([]);
@@ -39,6 +41,7 @@ function Home({ getDataFromHome }) {
         healthLabel
       );
       setRecipes(data.hits);
+      setIsLoading(false);
       setNextPageLink(data._links.next.href);
       setSearchItem("");
       setTimeOutId(null);
@@ -51,8 +54,9 @@ function Home({ getDataFromHome }) {
       clearTimeout(timeOutId);
     }
     const newTimeOutId = setTimeout(async () => {
-      const data = await fetchFromApi("lemon");
+      const data = await fetchFromApi("kebab");
       setRecipes(data.hits);
+      setIsLoading(false);
       setNextPageLink(data._links.next.href);
       setSearchItem("");
       setTimeOutId(null);
@@ -69,6 +73,7 @@ function Home({ getDataFromHome }) {
   }, [recipes]);
 
   const updateSearchItem = () => {
+    setIsLoading(true);
     setSearchItem(searchInput);
     setSearchInput("");
   };
@@ -87,7 +92,7 @@ function Home({ getDataFromHome }) {
     setHealthLabel(healthLabelFromNavBar);
   };
   // getDataFromHome(recipes);
-  console.log(nextPageLink);
+  // console.log(nextPageLink);
 
   const displayNextPage = async (nextPageUrl) => {
     console.log(nextPageUrl);
@@ -104,18 +109,24 @@ function Home({ getDataFromHome }) {
     }
   };
   return (
-    <div className={styles.App}>
-      <NavBar handleParameters={handleParametersFromNavBar} />
-      <SearchBar
-        searchInput={searchInput}
-        updateSearchItem={updateSearchItem}
-        handleChange={handleChange}
-      />
-      <div className={styles.container}>
-        <Pages displayNextPage={() => displayNextPage(nextPageLink)} />
-      </div>
-      <SearchResults recipes={recipes} />
-    </div>
+    <main>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <div className={styles.App}>
+          <NavBar handleParameters={handleParametersFromNavBar} />
+          <SearchBar
+            searchInput={searchInput}
+            updateSearchItem={updateSearchItem}
+            handleChange={handleChange}
+          />
+          <div className={styles.container}>
+            <Pages displayNextPage={() => displayNextPage(nextPageLink)} />
+          </div>
+          <SearchResults recipes={recipes} />
+        </div>
+      )}
+    </main>
   );
 }
 
