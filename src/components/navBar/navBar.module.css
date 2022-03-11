@@ -9,11 +9,6 @@
   font-weight: 700;
   font-size: 24px;
 }
-
-/* background: #faf1ee;
-border: 1px solid #fabaa7; 
-  background: #fe724c;
-*/
 .heartBtn {
   border-style: none;
   background-color: transparent;
@@ -45,7 +40,7 @@ border: 1px solid #fabaa7;
   padding: 5px 10px;
   font-size: 12px;
   font-weight: 700;
-  border: 1px solid white;
+  border: 3px solid white;
   background-color: #f8d8ce;
   color: #fe724c;
   border-radius: 10px;
@@ -53,12 +48,24 @@ border: 1px solid #fabaa7;
 }
 
 .btn:hover {
-  border: 2px solid #fe724c;
+  border: 3px solid #fe724c;
   background-color: white;
   color: #fe724c;
-  transition: 0.5s ease;
+  /* transition: 0.5s ease; */
 }
 
 :local(.navBar) {
   color: white !important;
+}
+
+.btnOnNavbar {
+  color: white !important;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 3px solid white;
+  background-color: #f8d8ce;
+  color: #fe724c;
+  border-radius: 10px;
+  font-size: 16px;
 }

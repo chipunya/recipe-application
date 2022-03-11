@@ -1,4 +1,14 @@
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Nav,
+  NavDropdown,
+  FormControl,
+  Form,
+} from "react-bootstrap";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+
 import { useState } from "react";
 import styles from "./navBar.module.css";
 import { BsFillSuitHeartFill } from "react-icons/bs";
@@ -239,9 +249,10 @@ const NavBar = ({ handleParameters }) => {
                 Vegetarian
               </NavDropdown.Item>
             </NavDropdown>
-            <button
-              sx={{ color: "white" }}
-              className={styles.btn}
+          </Nav>
+          <Form className="d-flex">
+            <Button
+              variant="outlined-light"
               onClick={(e) => {
                 handleParameters(
                   e,
@@ -254,16 +265,16 @@ const NavBar = ({ handleParameters }) => {
               }}
             >
               Apply selections
-            </button>
-            <button className={styles.btn} onClick={clearSelections}>
+            </Button>
+            <Button variant="outlined-light" onClick={clearSelections}>
               Clear all selections
-            </button>
-            <button className={styles.heartBtn}>
+            </Button>
+            <IconButton aria-label="favorites" color="error">
               <Link to="/favorite-recipes" className={styles.link}>
                 <BsFillSuitHeartFill className={styles.heartIcon} />
               </Link>
-            </button>
-          </Nav>
+            </IconButton>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
