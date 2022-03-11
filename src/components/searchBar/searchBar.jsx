@@ -19,11 +19,13 @@ const SearchBar = ({
   return (
     <>
       <p className={styles.heading}>
-        <RestaurantRoundedIcon />
-        eat <ChevronRightTwoToneIcon color="primary" />
-        <HotelRoundedIcon /> sleep <ChevronRightTwoToneIcon color="success" />{" "}
-        <HiCode />
-        code <ChevronRightTwoToneIcon color="secondary" /> <ReplayTwoToneIcon />{" "}
+        <RestaurantRoundedIcon className={styles.icon} />
+        eat <ChevronRightTwoToneIcon />
+        <HotelRoundedIcon className={styles.icon} /> sleep
+        <ChevronRightTwoToneIcon />
+        <HiCode className={styles.icon} />
+        code <ChevronRightTwoToneIcon />
+        <ReplayTwoToneIcon className={styles.icon} />
         repeat
       </p>
       <p className={styles.intro}>

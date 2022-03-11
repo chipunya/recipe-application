@@ -47,3 +47,9 @@
   display: flex;
   justify-content: center;
 }
+
+.icon {
+  color: black;
+  size: 30px;
+  margin: 0 5px;
+}
