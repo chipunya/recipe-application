@@ -17,6 +17,7 @@ const SearchBar = ({
   handleChange,
   updateSearchItem,
   voiceRecognize,
+  handleEnter,
 }) => {
   return (
     <>
@@ -54,6 +55,7 @@ const SearchBar = ({
             placeholder="Search Recipe"
             value={searchInput}
             onChange={handleChange}
+            onKeyPress={handleEnter}
             inputProps={{ "aria-label": "search recipes" }}
           />
           <IconButton

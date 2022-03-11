@@ -49,7 +49,7 @@ function Home({ getDataFromHome }) {
       } catch (e) {
         console.log(e);
       }
-    }, 700);
+    }, 500);
     setTimeOutId(newTimeOutId);
   }, [searchItem, mealType, dishType, cousineType, dietLabel, healthLabel]);
 
@@ -70,6 +70,19 @@ function Home({ getDataFromHome }) {
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
+    e.preventDefault();
+  };
+  const handleEnter = (e) => {
+    let val = e.target.value;
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (val !== "") {
+        setIsLoading(true);
+        setSearchItem(val);
+      } else {
+        alert("can't pass empty string");
+      }
+    }
   };
 
   useEffect(() => {
@@ -77,9 +90,13 @@ function Home({ getDataFromHome }) {
   }, [recipes]);
 
   const updateSearchItem = () => {
-    setIsLoading(true);
-    setSearchItem(searchInput);
-    // setSearchInput("");
+    if (searchInput) {
+      setIsLoading(true);
+      setSearchItem(searchInput);
+    } else {
+      alert("Please type something on input field");
+    }
+    setSearchInput("");
   };
   const handleParametersFromNavBar = (
     e,
@@ -104,25 +121,25 @@ function Home({ getDataFromHome }) {
     console.log("mic is activated");
   };
   recognition.onresult = function (e) {
-    console.log(e.results[0][0].transcript);
+    // console.log(e.results[0][0].transcript);
     setSearchInput(e.results[0][0].transcript);
     setIsLoading(true);
     setSearchItem(e.results[0][0].transcript);
   };
   const voiceRecognize = () => {
-    console.log("click");
+    // console.log("click");
     recognition.start();
   };
 
   const displayNextPage = async (nextPageUrl) => {
-    console.log(nextPageUrl);
+    // console.log(nextPageUrl);
     try {
       const response = await fetch(nextPageUrl);
       // console.log(response);
       const data = await response.json();
       setRecipes(data.hits);
       setNextPageLink(data._links.next.href);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (err) {
       console.error(err);
@@ -140,6 +157,7 @@ function Home({ getDataFromHome }) {
             updateSearchItem={updateSearchItem}
             handleChange={handleChange}
             voiceRecognize={voiceRecognize}
+            handleEnter={handleEnter}
           />
           <div className={styles.container}>
             <Pages displayNextPage={() => displayNextPage(nextPageLink)} />
