@@ -26,27 +26,30 @@ function Home({ getDataFromHome }) {
 
   useEffect(() => {
     if (!searchItem) {
-      setIsLoading(false);
       return;
     }
     if (timeOutId) {
       clearTimeout(timeOutId);
     }
     const newTimeOutId = setTimeout(async () => {
-      const data = await fetchFromApi(
-        searchItem,
-        mealType,
-        dishType,
-        cousineType,
-        dietLabel,
-        healthLabel
-      );
-      setRecipes(data.hits);
-      setIsLoading(false);
-      setNextPageLink(data._links.next.href);
-      setSearchItem("");
-      setTimeOutId(null);
-    }, 500);
+      try {
+        const data = await fetchFromApi(
+          searchItem,
+          mealType,
+          dishType,
+          cousineType,
+          dietLabel,
+          healthLabel
+        );
+        setRecipes(data.hits);
+        setIsLoading(false);
+        setNextPageLink(data._links.next.href);
+        setSearchItem("");
+        setTimeOutId(null);
+      } catch (e) {
+        console.log(e);
+      }
+    }, 700);
     setTimeOutId(newTimeOutId);
   }, [searchItem, mealType, dishType, cousineType, dietLabel, healthLabel]);
 
@@ -103,7 +106,8 @@ function Home({ getDataFromHome }) {
   recognition.onresult = function (e) {
     console.log(e.results[0][0].transcript);
     setSearchInput(e.results[0][0].transcript);
-    updateSearchItem();
+    setIsLoading(true);
+    setSearchItem(e.results[0][0].transcript);
   };
   const voiceRecognize = () => {
     console.log("click");
