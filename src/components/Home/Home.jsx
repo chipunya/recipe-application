@@ -5,6 +5,7 @@ import NavBar from "../navBar/navBar";
 import SearchBar from "../searchBar/searchBar";
 import SearchResults from "../searchResults/searchResults";
 import Pages from "../pages/Pages";
+import Selections from "../selections/selections";
 
 import { fetchFromApi } from "../utils";
 import LoadingPage from "../loadingPage/LoadingPage";
@@ -23,7 +24,7 @@ function Home({ getDataFromHome }) {
   const [cousineType, setCousineType] = useState([]);
   const [dietLabel, setDietLabel] = useState([]);
   const [healthLabel, setHealthLabel] = useState([]);
-
+  const [selections, setSelections] = useState([]);
   useEffect(() => {
     if (!searchItem) {
       return;
@@ -98,22 +99,73 @@ function Home({ getDataFromHome }) {
     }
     setSearchInput("");
   };
-  const handleParametersFromNavBar = (
-    e,
-    mealTypeFromNavBar,
-    dishTypeFromNavBar,
-    cousineTypeFromNavBar,
-    dietLabelFromNavBar,
-    healthLabelFromNavBar
-  ) => {
-    setMealType(mealTypeFromNavBar);
-    setDishtype(dishTypeFromNavBar);
-    setCousineType(cousineTypeFromNavBar);
-    setDietLabel(dietLabelFromNavBar);
-    setHealthLabel(healthLabelFromNavBar);
-  };
-  //speech recognition
+  useEffect(() => {
+    setSelections([]);
+    const newSelections = [
+      ...mealType,
+      ...dishType,
+      ...cousineType,
+      ...dietLabel,
+      ...healthLabel,
+    ];
+    const uniqueSelections = [...new Set(newSelections)];
 
+    setSelections(uniqueSelections);
+  }, [mealType, dishType, cousineType, dietLabel, healthLabel]);
+
+  const handleParametersFromNavBar = (e) => {
+    if (
+      e.target.title === "mealType" &&
+      !mealType.includes(e.target.name.toLowerCase())
+    )
+      setMealType([...mealType, e.target.name.toLowerCase()]);
+
+    if (
+      e.target.title === "dishType" &&
+      !dishType.includes(e.target.innerText.toLowerCase())
+    )
+      setDishtype([...dishType, e.target.innerText.toLowerCase()]);
+    if (
+      e.target.title === "cousineType" &&
+      !cousineType.includes(e.target.innerText.toLowerCase())
+    )
+      setCousineType([...cousineType, e.target.innerText.toLowerCase()]);
+    if (
+      e.target.title === "diet" &&
+      !dietLabel.includes(e.target.innerText.toLowerCase())
+    )
+      setDietLabel([...dietLabel, e.target.innerText.toLowerCase()]);
+    if (
+      e.target.title === "health" &&
+      !healthLabel.includes(e.target.innerText.toLowerCase())
+    )
+      setHealthLabel([...healthLabel, e.target.innerText.toLowerCase()]);
+    setSelections([
+      ...mealType,
+      ...dishType,
+      ...cousineType,
+      ...dietLabel,
+      ...healthLabel,
+    ]);
+  };
+
+  const removeSelections = (e, removedItem) => {
+    const filteredSelections = selections.filter(
+      (selection) => selection !== removedItem
+    );
+    setSelections(filteredSelections);
+  };
+
+  const clearSelections = () => {
+    setMealType([]);
+    setDishtype([]);
+    setCousineType([]);
+    setDietLabel([]);
+    setHealthLabel([]);
+    setSelections([]);
+  };
+
+  //speech recognition
   const SpeechRecognition =
     window.speechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
@@ -145,13 +197,23 @@ function Home({ getDataFromHome }) {
       console.error(err);
     }
   };
+  console.log(selections);
   return (
     <main>
       {isLoading ? (
         <LoadingPage />
       ) : (
         <div className={styles.App}>
-          <NavBar handleParameters={handleParametersFromNavBar} />
+          <NavBar
+            saveParameter={handleParametersFromNavBar}
+            clearSelections={clearSelections}
+          />
+          {selections.length > 0 && (
+            <Selections
+              selections={selections}
+              removeSelections={removeSelections}
+            />
+          )}
           <SearchBar
             searchInput={searchInput}
             updateSearchItem={updateSearchItem}

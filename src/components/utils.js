@@ -9,8 +9,9 @@ export const fetchFromApi = async (
   //basic parameters
   let APP_ID = "&app_id=c028241c";
   let APP_KEY = "&app_key=edc1d57799e55f304d3d4f8f6d6414c8";
-  let baseUrl =
-    "https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/recipes/v2?type=public";
+  let baseUrl = "https://api.edamam.com/api/recipes/v2?type=public";
+
+  //https://cors-anywhere.herokuapp.com/
 
   //required parameter
   const searchItemString =

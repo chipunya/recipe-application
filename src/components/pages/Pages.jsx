@@ -7,7 +7,7 @@ export default function Pages({ displayNextPage }) {
   return (
     <div className={styles.container}>
       <Stack spacing={2}>
-        <Pagination count={10} onClick={displayNextPage} />
+        <Pagination color="primary" count={10} onClick={displayNextPage} />
       </Stack>
     </div>
   );

@@ -48,11 +48,12 @@ body {
   height: 30%;
   font-size: 14px;
   line-height: normal;
-  background-color: var(--primary);
+  background-color: transparent;
   /* background: white; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  filter: drop-shadow(0px 0px 20px rgba(86, 86, 86, 0.5));
 }
 .cardTitle {
   height: 20%;
@@ -82,9 +83,11 @@ body {
   font-size: 12px;
   font-weight: 700;
   margin: 5px;
+  filter: drop-shadow(0px 0px 20px rgba(86, 86, 86, 0.5));
 }
 .btn:hover {
-  background-color: white;
-  color: #fe724c;
+  background-color: #f83600;
+  color: white;
+  transform: scale(1.1);
   transition: 0.5s ease;
 }
