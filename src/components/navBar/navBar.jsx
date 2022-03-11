@@ -14,49 +14,7 @@ import styles from "./navBar.module.css";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ handleParameters }) => {
-  const [mealType, setMealType] = useState([]);
-  const [dishType, setDishtype] = useState([]);
-  const [cousineType, setCousineType] = useState([]);
-  const [dietLabel, setDietLabel] = useState([]);
-  const [healthLabel, setHealthLabel] = useState([]);
-
-  const saveParameter = (e) => {
-    if (e.target.title === "mealType" && !mealType.includes(e.target.name))
-      setMealType([...mealType, e.target.name.toLowerCase()]);
-    if (e.target.title === "dishType" && !dishType.includes(e.target.innerText))
-      setDishtype([...dishType, e.target.innerText.toLowerCase()]);
-    if (
-      e.target.title === "cousineType" &&
-      !cousineType.includes(e.target.innerText)
-    )
-      setCousineType([...cousineType, e.target.innerText.toLowerCase()]);
-    if (
-      e.target.title === "diet" &&
-      !dietLabel.includes(e.target.innerText.toLowerCase())
-    )
-      setDietLabel([...dietLabel, e.target.innerText.toLowerCase()]);
-    if (
-      e.target.title === "health" &&
-      !healthLabel.includes(e.target.innerText.toLowerCase())
-    )
-      setHealthLabel([...healthLabel, e.target.innerText.toLowerCase()]);
-  };
-
-  // console.log("mealType", mealType);
-  // console.log("dishType", dishType);
-  // console.log("cousineType", cousineType);
-  // console.log("diet", dietLabel);
-  // console.log("health", healthLabel);
-
-  const clearSelections = () => {
-    setMealType([]);
-    setDishtype([]);
-    setCousineType([]);
-    setDietLabel([]);
-    setHealthLabel([]);
-  };
-
+const NavBar = ({ saveParameter, clearSelections }) => {
   return (
     <Navbar className={`navbar-dark ${styles.navBar}`} expand="lg">
       <Container>
@@ -251,24 +209,13 @@ const NavBar = ({ handleParameters }) => {
             </NavDropdown>
           </Nav>
           <Form className="d-flex">
-            <Button
+            <button
               variant="outlined-light"
-              onClick={(e) => {
-                handleParameters(
-                  e,
-                  mealType,
-                  dishType,
-                  cousineType,
-                  dietLabel,
-                  healthLabel
-                );
-              }}
+              onClick={clearSelections}
+              className={styles.btn}
             >
-              Apply selections
-            </Button>
-            <Button variant="outlined-light" onClick={clearSelections}>
               Clear all selections
-            </Button>
+            </button>
             <IconButton aria-label="favorites">
               <Link
                 to="/favorite-recipes"

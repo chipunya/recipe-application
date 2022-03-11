@@ -1,6 +1,7 @@
 .navBar {
+  margin-bottom: 10px;
   background-color: #fe724c;
-  border: 1px solid #fabaa7;
+  border: 1px solid #fe724c;
   font-size: 16px;
   font-weight: 400;
   display: flex;
@@ -22,43 +23,23 @@
 }
 
 .link:hover {
-  color: inherit;
-}
-.btn {
-  margin-left: 15px;
+  border: 3px solid #fe724c;
   color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  border: 3px solid white;
-  background-color: #f8d8ce;
-  color: #fe724c;
-  border-radius: 10px;
-  font-size: 16px;
+  transform: scale(1.1);
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  color: white;
 }
 
 .btn:hover {
-  border: 3px solid #fe724c;
-  background-color: white;
-  color: #fe724c;
-  /* transition: 0.5s ease; */
+  transition: 0.5s ease;
+  transform: scale(1.1);
+  font-weight: 500;
 }
 
 :local(.navBar) {
   color: white !important;
 }
-.NavDropdown {
-  color: white !important;
-}
-
-/* .btnOnNavbar {
-  color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  border: 3px solid white;
-  background-color: #f8d8ce;
-  color: #fe724c;
-  border-radius: 10px;
-  font-size: 16px;
-} */
