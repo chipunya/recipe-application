@@ -1,15 +1,12 @@
 import styles from "./searchBar.module.css";
-// import "./searchBar.module.css";
-import { BsArrowRepeat } from "react-icons/bs";
-// import IconButton from "@mui/material/IconButton";
+import { HiCode } from "react-icons/hi";
+import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
 import Paper from "@mui/material/Paper";
+import HotelRoundedIcon from "@mui/icons-material/HotelRounded";
 import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
+import ChevronRightTwoToneIcon from "@mui/icons-material/ChevronRightTwoTone";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
-// import { MicIcon } from "@mui/icons-material";
+import ReplayTwoToneIcon from "@mui/icons-material/ReplayTwoTone";
 import MicIcon from "@mui/icons-material/Mic";
 import { style } from "@mui/system";
 const SearchBar = ({
@@ -22,7 +19,11 @@ const SearchBar = ({
   return (
     <>
       <p className={styles.heading}>
-        eat <BsArrowRepeat /> sleep <BsArrowRepeat /> code <BsArrowRepeat />
+        <RestaurantRoundedIcon />
+        eat <ChevronRightTwoToneIcon color="primary" />
+        <HotelRoundedIcon /> sleep <ChevronRightTwoToneIcon color="success" />{" "}
+        <HiCode />
+        code <ChevronRightTwoToneIcon color="secondary" /> <ReplayTwoToneIcon />{" "}
         repeat
       </p>
       <p className={styles.intro}>
@@ -58,21 +59,19 @@ const SearchBar = ({
             onKeyPress={handleEnter}
             inputProps={{ "aria-label": "search recipes" }}
           />
-          <IconButton
+          {/* <IconButton
             onClick={updateSearchItem}
             sx={{ p: "10px" }}
             aria-label="search"
           >
             <SearchIcon />
-          </IconButton>
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          </IconButton> */}
           <IconButton
             onClick={voiceRecognize}
-            color="warning"
             sx={{ p: "10px" }}
             aria-label="mic"
           >
-            <MicIcon color="error" />
+            <MicIcon color="warning" />
           </IconButton>
         </Paper>
         {/* <div style={{ display: "inline-block" }}>

@@ -3,6 +3,8 @@
   border: 1px solid #fabaa7;
   font-size: 16px;
   font-weight: 400;
+  display: flex;
+  align-items: center;
 }
 .brand {
   color: white;
