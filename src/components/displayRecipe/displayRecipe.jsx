@@ -70,7 +70,7 @@ const DisplayRecipe = ({ recipes }) => {
       <div className={styles.flex}>
         <div className={styles.section}>
           <div className={styles.recipeImgContainer}>
-            <img src={data.image} className={styles.recipeImg} />
+            <img src={data.image} className={styles.recipeImg} alt={"receipeImage"}/>
           </div>
           <p>
             <b>Cuisine:</b>
@@ -157,6 +157,7 @@ const DisplayRecipe = ({ recipes }) => {
                   <img
                     className={styles.ingredientImg}
                     src={ingredient.image}
+                    alt={"IngredientImage"}
                   />
                   <p>{ingredient.text}</p>
                 </div>
