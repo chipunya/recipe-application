@@ -61,14 +61,7 @@ const NavBar = ({ handleParameters }) => {
     <Navbar className={`navbar-dark ${styles.navBar}`} expand="lg">
       <Container>
         <Navbar.Brand>
-          <p className={styles.brand}>
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/4589/4589842.png"
-              width={70}
-              alt=""
-            />{" "}
-            HungryDev
-          </p>
+          <p className={styles.brand}>Hungry Dev</p>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -276,8 +269,11 @@ const NavBar = ({ handleParameters }) => {
             <Button variant="outlined-light" onClick={clearSelections}>
               Clear all selections
             </Button>
-            <IconButton aria-label="favorites" color="error">
-              <Link to="/favorite-recipes" className={styles.link}>
+            <IconButton aria-label="favorites">
+              <Link
+                to="/favorite-recipes"
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+              >
                 <BsFillSuitHeartFill className={styles.heartIcon} />
               </Link>
             </IconButton>

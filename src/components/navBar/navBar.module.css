@@ -11,7 +11,7 @@
   font-weight: 700;
   font-size: 24px;
 }
-.heartBtn {
+/* .heartBtn {
   border-style: none;
   background-color: transparent;
   margin-left: 10px;
@@ -20,13 +20,15 @@
   padding: 5px;
 }
 .heartBtn:hover {
-  color: red;
+  color: rgb(255, 50, 111);
   transform: scale(1.3);
   transition: 0.5s ease;
   color: inherit;
-}
+} */
 .heartIcon:hover {
   color: red;
+  transform: scale(1.3);
+  transition: 0.5s ease;
 }
 .link {
   text-decoration: none;
