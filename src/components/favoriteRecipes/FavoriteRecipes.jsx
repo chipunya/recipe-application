@@ -32,6 +32,10 @@ const FavoriteRecipes = ({ fetchedData }) => {
     <div>
       <h1 className={styles.title}> Your Favorite Recipes</h1>
       <p>You have saved {recipeCards.length} recipes so far.</p>
+      <p>
+        You can drag and drop your favorite recipes to arrange them in the order
+        you want.
+      </p>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId={styles.container}>
           {(provided) => (
