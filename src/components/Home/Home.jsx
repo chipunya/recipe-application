@@ -14,8 +14,7 @@ function Home({ getDataFromHome }) {
   const [searchItem, setSearchItem] = useState("");
   const [timeOutId, setTimeOutId] = useState(null);
   const [nextPageLink, setNextPageLink] = useState("");
-  const [isOneRecipeSelected, setIsOneRecipeSelected] = useState(false);
-  const [selectedRecipe, setSelectedRecipe] = useState({});
+
   //states for saving search parameters
   const [mealType, setMealType] = useState([]);
   const [dishType, setDishtype] = useState([]);
