@@ -45,23 +45,20 @@ export const fetchFromApi = async (
     : healthLabel.length > 0
     ? "&health=" + healthLabel.join("&health=")
     : healthLabel.toString();
-  console.log(
-    mealTypeString,
-    dishTypeString,
-    cousineTypeString,
-    dietLabelString,
-    healthLabelString
-  );
+  // console.log(
+  //   mealTypeString,
+  //   dishTypeString,
+  //   cousineTypeString,
+  //   dietLabelString,
+  //   healthLabelString
+  // );
   try {
     const response = await fetch(
       `${baseUrl}${searchItemString}${APP_ID}${APP_KEY}${mealTypeString}${dishTypeString}${cousineTypeString}${dietLabelString}${healthLabelString}`
     );
-
     // console.log(response);
-
     const data = await response.json();
     // console.log(data._links.next.href);
-
     return data;
   } catch (err) {
     console.error(err);

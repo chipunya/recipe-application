@@ -1,7 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/navBar/navBar";
-import SearchBar from "./components/searchBar/searchBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import DisplayRecipe from "./components/displayRecipe/displayRecipe";

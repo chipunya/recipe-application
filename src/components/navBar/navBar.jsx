@@ -269,8 +269,11 @@ const NavBar = ({ handleParameters }) => {
             <Button variant="outlined-light" onClick={clearSelections}>
               Clear all selections
             </Button>
-            <IconButton aria-label="favorites" color="error">
-              <Link to="/favorite-recipes" className={styles.link}>
+            <IconButton aria-label="favorites">
+              <Link
+                to="/favorite-recipes"
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+              >
                 <BsFillSuitHeartFill className={styles.heartIcon} />
               </Link>
             </IconButton>
