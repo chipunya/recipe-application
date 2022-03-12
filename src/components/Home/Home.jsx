@@ -52,7 +52,7 @@ function Home({ getDataFromHome }) {
       }
     }, 500);
     setTimeOutId(newTimeOutId);
-  }, [searchItem, mealType, dishType, cousineType, dietLabel, healthLabel]);
+  }, [searchItem, mealType, dishType, cousineType, dietLabel, healthLabel,timeOutId]);
 
   useEffect(() => {
     if (timeOutId) {
@@ -67,7 +67,7 @@ function Home({ getDataFromHome }) {
       setTimeOutId(null);
     }, 500);
     setTimeOutId(newTimeOutId);
-  }, []);
+  }, [timeOutId]);
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -88,7 +88,7 @@ function Home({ getDataFromHome }) {
 
   useEffect(() => {
     getDataFromHome(recipes);
-  }, [recipes]);
+  }, [recipes,getDataFromHome]);
 
   const updateSearchItem = () => {
     if (searchInput) {
